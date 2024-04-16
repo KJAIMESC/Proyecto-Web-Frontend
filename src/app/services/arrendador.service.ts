@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import axios from 'axios';
 import { Arrendador } from '../models/arrendador';
 
