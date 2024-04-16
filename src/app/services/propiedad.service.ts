@@ -40,4 +40,8 @@ export class PropiedadService {
     });
   }
 
+  savePropiedad(propiedad: Propiedad): Promise<Propiedad> {
+    return axios.post<Propiedad>(this.apiUrl, propiedad).then(response => response.data);
+  }
+
 }

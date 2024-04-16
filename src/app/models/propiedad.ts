@@ -11,7 +11,8 @@ export class Propiedad {
         public permitido_mascotas?: boolean | null,
         public piscina?: boolean | null,
         public valor_noche?: number | null,
-        public id_arrendador_fk?: number | null,
-        public id_tipo_ingreso_fk?: number | null,
+        public tipoIngreso?: { id_tipoIngreso: number }, 
+        public arrendador?: { id_arrendador: number },
+        public imagen?: any
     ){ }
 }
