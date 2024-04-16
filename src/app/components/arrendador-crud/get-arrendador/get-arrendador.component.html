@@ -1,1 +1,17 @@
 <p>get-arrendador works!</p>
+<div>
+    <input type="text" [(ngModel)]="searchId" (input)="onIdChange($any($event).target.value)" placeholder="Ingrese ID del arrendador">
+    <button (click)="buscarArrendador()">Buscar</button>
+  </div>
+  
+  <div *ngIf="arrendador">
+    <p>ID: {{ arrendador.id_arrendador }}</p>
+    <p>Nombres: {{ arrendador.nombres }}</p>
+    <p>Apellidos: {{ arrendador.apellidos }}</p>
+    <p>Correo: {{ arrendador.correo }}</p>
+    <!-- ... otros campos del arrendador -->
+  </div>
+  
+  <div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+  </div>

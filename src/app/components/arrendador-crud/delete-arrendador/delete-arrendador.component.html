@@ -1,1 +1,13 @@
 <p>delete-arrendador works!</p>
+<div>
+  <input type="text" [(ngModel)]="searchId" (input)="onIdChange($any($event).target.value)" placeholder="Ingrese ID del arrendador a eliminar">
+  <button (click)="deleteArrendador()">Eliminar</button>
+</div>
+
+<div *ngIf="successMessage">
+  <p>{{ successMessage }}</p>
+</div>
+
+<div *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
