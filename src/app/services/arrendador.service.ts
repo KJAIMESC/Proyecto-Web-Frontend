@@ -17,5 +17,9 @@ export class ArrendadorService {
       return response.data;
     });
   }
+
+  saveArrendador(arrendador: Arrendador): Promise<Arrendador> {
+    return axios.post<Arrendador>(this.apiUrl, arrendador).then(response => response.data);
+  }
 }
   
