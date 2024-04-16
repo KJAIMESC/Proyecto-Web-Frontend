@@ -33,7 +33,7 @@ export class PropiedadService {
   deletePropiedad(id: number): Promise<void> {
     return axios.delete(`${this.apiUrl}/${id}`).then(response => {
       console.log("Propiedad eliminada con éxito");
-      return response.data;  // Aunque usualmente un DELETE no retornaría un cuerpo, depende de tu API
+      return response.data; 
     }).catch(error => {
       console.error("Error al eliminar la propiedad", error);
       throw error;
@@ -42,6 +42,10 @@ export class PropiedadService {
 
   savePropiedad(propiedad: Propiedad): Promise<Propiedad> {
     return axios.post<Propiedad>(this.apiUrl, propiedad).then(response => response.data);
+  }
+
+  updatePropiedad(propiedad: Propiedad): Promise<Propiedad> {
+    return axios.put<Propiedad>(`${this.apiUrl}/${propiedad.id_propiedad}`, propiedad).then(response => response.data);
   }
 
 }
