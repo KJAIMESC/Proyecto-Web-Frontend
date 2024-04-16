@@ -1,1 +1,13 @@
 <p>get-all-propiedad works!</p>
+<p *ngIf="errorMessage">{{ errorMessage }}</p>
+<div *ngIf="!errorMessage">
+  <h2>Todas las Propiedades</h2>
+  <ul>
+    <li *ngFor="let propiedad of propiedades">
+      <p>ID: {{ propiedad.id_propiedad }}</p>
+      <p>Nombre: {{ propiedad.nombre }}</p>
+      <p>Descripción: {{ propiedad.descripcion }}</p>
+      <!-- Agrega más detalles según necesites -->
+    </li>
+  </ul>
+</div>

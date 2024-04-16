@@ -19,4 +19,25 @@ export class PropiedadService {
       throw error;
     });
   }
+
+  getAllPropiedades(): Promise<Propiedad[]> {
+    return axios.get<Propiedad[]>(this.apiUrl).then(response => {
+      console.log("Todas las propiedades recibidas:", response.data);  
+      return response.data;
+    }).catch(error => {
+      console.error("Error al obtener todas las propiedades", error);
+      throw error;
+    });
+  }
+
+  deletePropiedad(id: number): Promise<void> {
+    return axios.delete(`${this.apiUrl}/${id}`).then(response => {
+      console.log("Propiedad eliminada con éxito");
+      return response.data;  // Aunque usualmente un DELETE no retornaría un cuerpo, depende de tu API
+    }).catch(error => {
+      console.error("Error al eliminar la propiedad", error);
+      throw error;
+    });
+  }
+
 }

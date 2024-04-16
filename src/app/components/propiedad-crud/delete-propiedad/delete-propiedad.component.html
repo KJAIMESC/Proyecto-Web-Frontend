@@ -1,1 +1,14 @@
 <p>delete-propiedad works!</p>
+<div>
+  <input type="text" [(ngModel)]="searchId" (input)="onIdChange($any($event).target.value)" placeholder="Ingrese ID de la propiedad a eliminar">
+  <button (click)="deletePropiedad()">Eliminar</button>
+</div>
+
+<div *ngIf="successMessage">
+  <p>{{ successMessage }}</p>
+</div>
+
+<div *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
+
