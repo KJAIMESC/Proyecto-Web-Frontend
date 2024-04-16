@@ -1,6 +1,6 @@
 export class Arrendador {
     constructor(
-        public id_arrendatario?: number | null,
+        public id_arrendador?: number | null,
         public activado?: boolean| null,
         public nombres?: string | null,
         public apellidos?: string | null,
