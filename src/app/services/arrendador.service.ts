@@ -19,8 +19,7 @@ export class ArrendadorService {
     });
   }
 
-
-   getArrendadorById(id: number): Promise<Arrendador> {
+  getArrendadorById(id: number): Promise<Arrendador> {
     const url = `${this.apiUrl}/${id}`;
     return axios.get<Arrendador>(url).then(response => {
       console.log("Arrendador recibido:", response.data);
@@ -38,6 +37,9 @@ export class ArrendadorService {
     });
   }  
 
+  saveArrendador(arrendador: Arrendador): Promise<Arrendador> {
+    return axios.post<Arrendador>(this.apiUrl, arrendador).then(response => response.data);
+  }
 }
 
 
