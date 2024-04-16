@@ -4,93 +4,55 @@
 <div>
   <label for="propiedadId">ID de la Propiedad:</label>
   <input type="number" id="propiedadId" [(ngModel)]="currentPropiedadId" placeholder="Ingrese ID de la propiedad">
-  <button (click)="currentPropiedadId != null && loadPropiedad(currentPropiedadId)">Cargar Propiedad</button>
+  <button (click)="currentPropiedadId && loadPropiedad(currentPropiedadId)">Cargar Propiedad</button>
 </div>
 
-<ng-container *ngIf="!isUpdatedSuccessfully; else updateSuccessTemplate">
-  <form [formGroup]="propiedadForm" (ngSubmit)="updatePropiedad()" *ngIf="propiedadForm.valid">
+<ng-container *ngIf="isPropertyLoaded && !isUpdatedSuccessfully; else updateSuccessTemplate">
+  <form [formGroup]="propiedadForm" (ngSubmit)="updatePropiedad()" *ngIf="currentPropiedadId">
     <div class="form-group">
       <label for="nombre">Nombre</label>
-      <input type="text" class="form-control" id="nombre" formControlName="nombre" required>
-      <div *ngIf="propiedadForm.get('nombre')?.invalid && propiedadForm.get('nombre')?.touched" class="alert alert-danger">
-        Nombre requerido
-      </div>
+      <input type="text" class="form-control" id="nombre" formControlName="nombre">
     </div>
-
     <div class="form-group">
       <label for="descripcion">Descripción</label>
-      <textarea class="form-control" id="descripcion" formControlName="descripcion" required></textarea>
-      <div *ngIf="propiedadForm.get('descripcion')?.invalid && propiedadForm.get('descripcion')?.touched" class="alert alert-danger">
-        Descripción requerida
-      </div>
+      <textarea class="form-control" id="descripcion" formControlName="descripcion"></textarea>
     </div>
-
     <div class="form-group">
       <label for="cantidadHabitaciones">Cantidad de Habitaciones</label>
-      <input type="number" class="form-control" id="cantidadHabitaciones" formControlName="cantidadHabitaciones" required>
-      <div *ngIf="propiedadForm.get('cantidadHabitaciones')?.invalid && propiedadForm.get('cantidadHabitaciones')?.touched" class="alert alert-danger">
-        Este campo es requerido
-      </div>
+      <input type="number" class="form-control" id="cantidadHabitaciones" formControlName="cantidadHabitaciones">
     </div>
-
     <div class="form-group">
       <label for="cantidadBanos">Cantidad de Baños</label>
-      <input type="number" class="form-control" id="cantidadBanos" formControlName="cantidadBanos" required>
-      <div *ngIf="propiedadForm.get('cantidadBanos')?.invalid && propiedadForm.get('cantidadBanos')?.touched" class="alert alert-danger">
-        Este campo es requerido
-      </div>
+      <input type="number" class="form-control" id="cantidadBanos" formControlName="cantidadBanos">
     </div>
-
     <div class="form-group">
       <label for="departamento">Departamento</label>
-      <input type="text" class="form-control" id="departamento" formControlName="departamento" required>
-      <div *ngIf="propiedadForm.get('departamento')?.invalid && propiedadForm.get('departamento')?.touched" class="alert alert-danger">
-        Departamento requerido
-      </div>
+      <input type="text" class="form-control" id="departamento" formControlName="departamento">
     </div>
-
     <div class="form-group">
       <label for="municipio">Municipio</label>
-      <input type="text" class="form-control" id="municipio" formControlName="municipio" required>
-      <div *ngIf="propiedadForm.get('municipio')?.invalid && propiedadForm.get('municipio')?.touched" class="alert alert-danger">
-        Municipio requerido
-      </div>
+      <input type="text" class="form-control" id="municipio" formControlName="municipio">
     </div>
-
     <div class="form-group">
       <label for="valorNoche">Valor por Noche</label>
-      <input type="number" class="form-control" id="valorNoche" formControlName="valorNoche" required>
-      <div *ngIf="propiedadForm.get('valorNoche')?.invalid && propiedadForm.get('valorNoche')?.touched" class="alert alert-danger">
-        Valor requerido
-      </div>
+      <input type="number" class="form-control" id="valorNoche" formControlName="valorNoche">
     </div>
-
     <div class="form-group">
       <label for="permitidoMascotas">Permitido Mascotas</label>
       <input type="checkbox" class="form-control" id="permitidoMascotas" formControlName="permitidoMascotas">
     </div>
-
     <div class="form-group">
       <label for="piscina">Piscina</label>
       <input type="checkbox" class="form-control" id="piscina" formControlName="piscina">
     </div>
-
     <div class="form-group">
-      <label for="tipoIngresoId">Tipo Ingreso ID</label>
-      <input type="number" class="form-control" id="tipoIngresoId" formControlName="tipoIngresoId" required>
-      <div *ngIf="propiedadForm.get('tipoIngresoId')?.invalid && propiedadForm.get('tipoIngresoId')?.touched" class="alert alert-danger">
-        Tipo de ingreso requerido
-      </div>
+      <label for="tipoIngresoId">Tipo de Ingreso ID</label>
+      <input type="number" class="form-control" id="tipoIngresoId" formControlName="tipoIngresoId">
     </div>
-
     <div class="form-group">
       <label for="arrendadorId">Arrendador ID</label>
-      <input type="number" class="form-control" id="arrendadorId" formControlName="arrendadorId" required>
-      <div *ngIf="propiedadForm.get('arrendadorId')?.invalid && propiedadForm.get('arrendadorId')?.touched" class="alert alert-danger">
-        ID de arrendador requerido
-      </div>
+      <input type="number" class="form-control" id="arrendadorId" formControlName="arrendadorId">
     </div>
-
     <button type="submit" [disabled]="propiedadForm.invalid">Actualizar</button>
   </form>
 </ng-container>
@@ -98,4 +60,3 @@
 <ng-template #updateSuccessTemplate>
   <p>Propiedad actualizada con éxito.</p>
 </ng-template>
-

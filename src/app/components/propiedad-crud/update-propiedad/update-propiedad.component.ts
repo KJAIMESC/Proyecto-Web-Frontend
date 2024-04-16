@@ -15,20 +15,21 @@ export class UpdatePropiedadComponent implements OnInit {
   propiedadForm: FormGroup;
   currentPropiedadId: number | null = null;
   isUpdatedSuccessfully: boolean = false;
+  isPropertyLoaded: boolean = false;
   message: string = '';
 
   constructor(private propiedadService: PropiedadService) {
     this.propiedadForm = new FormGroup({
       nombre: new FormControl('', [Validators.required]),
       descripcion: new FormControl('', [Validators.required]),
-      cantidadHabitaciones: new FormControl('', [Validators.required, Validators.min(1)]),
-      cantidadBanos: new FormControl('', [Validators.required, Validators.min(1)]),
+      cantidadHabitaciones: new FormControl(0, [Validators.required, Validators.min(1)]),
+      cantidadBanos: new FormControl(0, [Validators.required, Validators.min(1)]),
       departamento: new FormControl('', [Validators.required]),
       municipio: new FormControl('', [Validators.required]),
-      permitidoMascotas: new FormControl(''),
-      piscina: new FormControl(''),
-      valorNoche: new FormControl('', [Validators.required, Validators.min(0)]),
-      activado: new FormControl(''),
+      permitidoMascotas: new FormControl(false),
+      piscina: new FormControl(false),
+      valorNoche: new FormControl(0, [Validators.required, Validators.min(0)]),
+      activado: new FormControl(false),
       tipoIngresoId: new FormControl('', [Validators.required]),
       arrendadorId: new FormControl('', [Validators.required]),
       imagen: new FormControl('')
@@ -37,47 +38,31 @@ export class UpdatePropiedadComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  loadPropiedad(id: number | null) {
-    if (id == null) {  // Verifica explícitamente si el id es null o undefined
-      console.error('Intento de cargar una propiedad sin un ID válido.');
-      this.message = 'Please provide a valid property ID.';
-      return;  // Salir temprano para evitar más ejecución.
-    }
-  
-    this.propiedadService.getPropiedadById(id).then(propiedad => {
-      this.currentPropiedadId = id;
-      this.propiedadForm.patchValue({
-        nombre: propiedad.nombre,
-        descripcion: propiedad.descripcion,
-        cantidadHabitaciones: propiedad.cantidad_habitaciones,
-        cantidadBanos: propiedad.cantidad_banos,
-        departamento: propiedad.departamento,
-        municipio: propiedad.municipio,
-        permitidoMascotas: propiedad.permitido_mascotas,
-        piscina: propiedad.piscina,
-        valorNoche: propiedad.valor_noche,
-        activado: propiedad.activado,
-        tipoIngresoId: propiedad.tipoIngreso?.id_tipoIngreso,
-        arrendadorId: propiedad.arrendador?.id_arrendador,
-        imagen: propiedad.imagen
+  loadPropiedad(id: number) {
+    if (id) {
+      this.propiedadService.getPropiedadById(id).then(propiedad => {
+        this.currentPropiedadId = id;
+        this.propiedadForm.patchValue(propiedad);
+        this.isPropertyLoaded = true;
+        this.message = '';
+      }).catch(error => {
+        console.error('Error al cargar la propiedad:', error);
+        this.message = 'Error loading property. Please check the ID.';
+        this.isPropertyLoaded = false;
       });
-      this.message = '';  // Limpia cualquier mensaje de error anterior.
-    }).catch(error => {
-      console.error('Error al cargar la propiedad:', error);
-      this.message = 'Error loading property. Please check the ID.';
-    });
+    } else {
+      this.message = 'Please enter a valid ID.';
+      this.isPropertyLoaded = false;
+    }
   }
-  
 
   updatePropiedad() {
     if (this.propiedadForm.valid) {
       const updatedPropiedad: Propiedad = {
         ...this.propiedadForm.value,
         id_propiedad: this.currentPropiedadId, // Include the ID for PUT request
-        tipoIngreso: { id_tipoIngreso: Number(this.propiedadForm.value.tipoIngresoId) },
-        arrendador: { id_arrendador: Number(this.propiedadForm.value.arrendadorId) }
       };
-      this.propiedadService.updatePropiedad(updatedPropiedad).then(() => {
+      this.propiedadService.savePropiedad(updatedPropiedad).then(() => {
         this.isUpdatedSuccessfully = true;
         this.message = 'Propiedad actualizada con éxito.';
       }).catch(error => {
