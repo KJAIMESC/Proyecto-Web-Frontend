@@ -41,8 +41,3 @@ export class ArrendadorService {
     return axios.post<Arrendador>(this.apiUrl, arrendador).then(response => response.data);
   }
 }
-
-
-
-
-  
