@@ -1,1 +1,17 @@
 <p>get-propiedad works!</p>
+<p>get-propiedad works!</p>
+<div>
+    <input type="text" [(ngModel)]="searchId" (input)="onIdChange($any($event).target.value)" placeholder="Ingrese ID de la propiedad">
+    <button (click)="buscarPropiedad()">Buscar</button>
+</div>
+
+<div *ngIf="propiedad">
+    <p>ID: {{ propiedad.id_propiedad }}</p>
+    <p>Nombre: {{ propiedad.nombre }}</p>
+    <p>Descripción: {{ propiedad.descripcion }}</p>
+    <!-- Agrega más campos según necesites mostrar -->
+</div>
+
+<div *ngIf="errorMessage">
+    <p>Error: {{ errorMessage }}</p>
+</div>
