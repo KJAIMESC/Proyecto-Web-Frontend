@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Arrendador } from '../../models/arrendador';
-import { ArrendadorService } from '../../services/arrendador.service';
+import { CommonModule } from '@angular/common';
+import { Arrendador } from '../../../models/arrendador';
+import { ArrendadorService } from '../../../services/arrendador.service';
+
 
 @Component({
   selector: 'app-get-all-arrendador',
   standalone: true,
-  imports: [ArrendadorService],  
+  imports: [CommonModule],  
   templateUrl: './get-all-arrendador.component.html',
   styleUrls: ['./get-all-arrendador.component.css']
 })
@@ -15,10 +17,16 @@ export class GetAllArrendadorComponent implements OnInit {
   constructor(private arrendadorService: ArrendadorService) {}
 
   ngOnInit(): void {
-    this.arrendadorService.getAllArrendadores().then(data => {
-      this.arrendadores = data;
-    }).catch(error => {
-      console.error('Error fetching arrendadores', error);
+    this.getAllArrendador();
+  }
+
+  getAllArrendador(){
+    // Externo
+    this.arrendadorService.getAllArrendadores().then((post) => {
+      this.arrendadores = post;
+    }).catch((error) => {
+      console.error(error);
     });
   }
 }
+
