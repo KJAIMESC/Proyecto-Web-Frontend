@@ -17,4 +17,10 @@ export class HeaderComponent {
   openPropiedad() {
     this.router.navigate(['propiedades'])
   }
+  openArrendatario() {
+    this.router.navigate(['arrendatarios'])
+  }
+  openSolicitud() {
+    this.router.navigate(['solicitudes'])
+  }
 }
