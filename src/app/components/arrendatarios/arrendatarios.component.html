@@ -1,9 +1,81 @@
-<p>arrendatarios works!</p>
-<button (click)="getArrendatario()">get arrendatario</button>
-<button (click)="getAllArrendatarios()">get all arrendatarios</button>
-<button (click)="createArrendatario()">create arrendatario</button>
-<button (click)="updateArrendatario()">update arrendatario</button> 
-<button (click)="deleteArrendatario()">delete arrendatario</button>
-<p>------------------------------------------------</p>
-<router-outlet></router-outlet>
-<p>------------------------------------------------</p>
+<main class="arrendatario-main">
+    <section class="welcome-section">
+        <h1 class="dashboard-title">Bienvenido Arrendatario</h1>
+        <p class="dashborad-description">Aquí puedes gestionar tus solicitudes como mejor te parezca ¡DISFRUTA!</p>
+    </section>
+
+    <section class="intro-section">
+        <div class="text-container">
+            <h2>¿Qué es un Arrendatario?</h2>
+            <p>Como arrendatario, cuentas con diversas herramientas para encontrar tu hospedaje ideal, para ti, para tu pareja, para tu familia e incluso para tu mejor amigo, tu perro. Recuerda que gracias a ARRIENDA TU FINCA todo está al alcance de tu mano</p>
+            <ul>
+                <li>Norma 1: Haz cuentas claras para que nada se te vaya del bolsillo</li>
+                <li>Norma 2: Comunicate con nosotros por cualquier inconveniente</li>
+                <li>Norma 3: No hacer daños a las cosas que no son de nosotros</li>
+                <li>Norma 4: Tener buena actitud</li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="assets/imagenes/familia.png" alt="Imagen representativa" class="welcome-image">
+        </div>
+    </section>   
+
+    <section class="help-form-section">
+        <h2>¿Necesitas ayuda?</h2>
+        <form class="help-form">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+            </div>
+        </form>
+    </section>
+    
+
+    <section class="benefits-section">
+        <h2>Beneficios de Arrienda Tu Finca</h2>
+        <div class="benefits-container">
+            <div class="benefit-card">
+                <h3>Variedad</h3>
+                <p>Accede a una amplia gama de propiedades rurales en diferentes ubicaciones.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Comodidad</h3>
+                <p>Gestiona todos tus arrendamientos y reservas en línea, fácil y rápido.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Confianza</h3>
+                <p>Trabajamos con los mejores para asegurarte una experiencia segura y de confianza.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="actions-section">
+        <h2>Información</h2>
+        <h3>¿Qué deseas hacer hoy?</h3>
+        <button (click)="getArrendatario()">Consultar Información</button>
+        <button (click)="getAllArrendatarios()">Ver Arrendatarios</button>
+        <button (click)="createArrendatario()">Crear Perfil</button>
+        <button (click)="updateArrendatario()">Actualizar Datos</button>
+        <button (click)="deleteArrendatario()">Eliminar Perfil</button>
+    </section>
+
+    <section class="solicitudes-section">
+        <h2>Tus Solicitudes</h2>
+        <p>Aquí puedes revisar el estado de tus solicitudes de arrendamiento.</p>
+        <button class="solicitud-btn" (click)="openSolicitud()">Ver Solicitudes</button>
+    </section>
+    
+    
+    <router-outlet></router-outlet>
+</main>

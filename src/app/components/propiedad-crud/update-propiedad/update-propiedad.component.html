@@ -1,14 +1,13 @@
-<p>update-propiedad works!</p>
 <h2>Actualizar Propiedad</h2>
 
-<div>
+<div class="search-container">
   <label for="propiedadId">ID de la Propiedad:</label>
-  <input type="number" id="propiedadId" [(ngModel)]="currentPropiedadId" placeholder="Ingrese ID de la propiedad">
-  <button (click)="currentPropiedadId && loadPropiedad(currentPropiedadId)">Cargar Propiedad</button>
+  <input type="number" id="propiedadId" [(ngModel)]="currentPropiedadId" placeholder="Ingrese ID de la propiedad" class="search-input">
+  <button (click)="currentPropiedadId && loadPropiedad(currentPropiedadId)" class="search-button">Cargar Propiedad</button>
 </div>
 
 <ng-container *ngIf="isPropertyLoaded && !isUpdatedSuccessfully; else updateSuccessTemplate">
-  <form [formGroup]="propiedadForm" (ngSubmit)="updatePropiedad()" *ngIf="currentPropiedadId">
+  <form [formGroup]="propiedadForm" (ngSubmit)="updatePropiedad()" *ngIf="currentPropiedadId" class="propiedad-form">
     <div class="form-group">
       <label for="nombre">Nombre</label>
       <input type="text" class="form-control" id="nombre" formControlName="nombre">
@@ -53,10 +52,12 @@
       <label for="arrendadorId">Arrendador ID</label>
       <input type="number" class="form-control" id="arrendadorId" formControlName="arrendadorId">
     </div>
-    <button type="submit" [disabled]="propiedadForm.invalid">Actualizar</button>
+    <button type="submit" class="form-submit-button" [disabled]="propiedadForm.invalid">Actualizar</button>
   </form>
 </ng-container>
 
 <ng-template #updateSuccessTemplate>
-  <p>Propiedad actualizada con éxito.</p>
+  <div class="update-sucess-message">
+    <p>Propiedad actualizada con éxito.</p>
+  </div>
 </ng-template>

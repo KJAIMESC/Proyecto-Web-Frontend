@@ -1,4 +1,73 @@
-<p>arrendadores</p>
+<main class="arrendador-main">
+    <section class="welcome-section">
+        <h1 class="dashboard-title">Bienvenido Arrendador</h1>
+        <p class="dashborad-description">Aquí puedes gestionar tus propiedades y realizar acciones importantes de forma rápida y eficiente.</p>
+    </section>
+
+    <section class="intro-section">
+        <div class="text-container">
+            <h2>¿Qué es un Arrendador?</h2>
+            <p>Como arrendador, formas parte vital de la red de alojamientos rurales, proporcionando experiencias únicas a los viajeros y generando ingresos a través de tus propiedades.</p>
+            <ul>
+                <li>Norma 1: Siempre proporciona condiciones claras y justas.</li>
+                <li>Norma 2: Mantén tu propiedad en las mejores condiciones.</li>
+                <li>Norma 3: Comentanos en caso de cualquier accidente para hacernos caso nosotros</li>
+                <li>Norma 4: Notifica cualquier cambio de tu propiedad</li>
+            </ul>
+        </div>
+        <div class="image-container">
+            <img src="assets/imagenes/hombre_feliz.png" alt="Imagen del Arrendador">
+        </div>
+    </section>   
+
+    <section class="benefits-section">
+        <h2>Beneficios de ser Arrendador</h2>
+        <div class="benefits-container">
+            <div class="benefit">Confiabilidad</div>
+            <div class="benefit">Seguridad</div>
+            <div class="benefit">Rentabilidad</div>
+        </div>
+    </section>  
+
+    <div class="trust-bar">
+        <p>Te brindamos confianza, seguridad y discreción.</p>
+    </div>
+
+    <section class="actions-section">
+        <h2>¿Qué quieres hacer hoy?</h2>
+        <div class="buttons-container">
+            <button class="action-btn" (click)="getArrendador()">
+                <span>Consultar Información</span>
+            </button>
+            <button class="action-btn" (click)="getAllArrendadores()">
+                <span>Ver Todos los Arrendadores</span>
+            </button>
+            <button class="action-btn" (click)="createArrendador()">
+                <span>Crear Arrendador</span>
+            </button>
+            <button class="action-btn" (click)="updateArrendador()">
+                <span>Actualizar Arrendador</span>
+            </button>
+            <button class="action-btn" (click)="deleteArrendador()">
+                <span>Eliminar Arrendador</span>
+        </button>
+        </div>
+    </section>
+
+    <section class="my-properties-section">
+        <h2 class="properties-title">Mis Propiedades</h2>
+        <div class="properties-container">
+            <button class="properties-button" (click)="openPropiedad()">Ver mis Fincas</button>
+        </div>
+       
+    </section>
+
+    <router-outlet></router-outlet>
+</main>
+
+
+
+<!--<p>arrendadores</p>
 <button (click)="getArrendador()">get arrendador</button>
 <button (click)="getAllArrendadores()">get all arrendadores</button>
 <button (click)="createArrendador()">create arrendador</button>
@@ -6,4 +75,4 @@
 <button (click)="deleteArrendador()">delete arrendador</button>
 <p>------------------------------------------------</p>
 <router-outlet></router-outlet>
-<p>------------------------------------------------</p>
+<p>------------------------------------------------</p>-->

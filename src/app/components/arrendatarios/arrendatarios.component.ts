@@ -30,4 +30,8 @@ export class ArrendatariosComponent {
   deleteArrendatario() {
     this.router.navigate(['delete'], { relativeTo: this.route})
   }
+
+  openSolicitud() {
+    this.router.navigate(['solicitudes'])
+  }
 }

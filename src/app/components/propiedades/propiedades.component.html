@@ -1,9 +1,45 @@
-<p>propiedades</p>
-<button (click)="getPropiedad()">get propiedad</button>
-<button (click)="getAllPropiedades()">get all propiedades</button>
-<button (click)="createPropiedad()">create propiedad</button>
-<button (click)="updatePropiedad()">update propiedad</button>
-<button (click)="deletePropiedad()">delete propiedad</button>
-<p>------------------------------------------------</p>
-<router-outlet></router-outlet>
-<p>------------------------------------------------</p>
+<main class="mis-propiedades-container">
+    <h1 class="propiedades-title">Mis Propiedades</h1>
+    <p class="propiedades-description">Aquí podrás gestionar a tu gusto tus bellas propiedades.</p>
+    
+    <img src="assets/imagenes/imagen_finca1.jpg" alt="Imagen de una Finca" class="propiedades-image">
+    
+    <section class="propiedades-normas">
+        <h2>Normas de las Propiedades</h2>
+        <div class="normas-list">
+            <div class="norma">
+                <h3>Aseo</h3>
+                <img src="assets/imagenes/limpieza-interna.png" alt="Imagen de Aseo" class="icon">
+            </div>
+            <div class="norma">
+                <h3>WiFi</h3>
+                <img src="assets/imagenes/wifi.png" alt="Imagen de Wifi" class="icon">
+            </div>
+            <div class="norma">
+                <h3>Seguridad</h3>
+                <img src="assets/imagenes/camara-de-seguridad.png" alt="Imagen de seguridad" class="icon">
+            </div>
+            <div class="norma">
+                <h3>Cocina</h3>
+                <img src="assets/imagenes/cocinando.png" alt="Imagen de cocina" class="icon">
+            </div>
+            <div class="norma">
+                <h3>Seguro</h3>
+                <img src="assets/imagenes/candado.png" alt="Imagen de seguro" class="icon">
+            </div>
+            <div class="norma">
+                <h3>Baño</h3>
+                <img src="assets/imagenes/inodoro.png" alt="Imagen de baño" class="icon">
+            </div>
+        </div>
+    </section>
+    
+    <h2>¿Qué deseas hacer hoy?</h2>
+    <div class="acciones-propiedades">
+        <button class="accion-btn" (click)="getPropiedad()">Consultar Propiedad</button>
+        <button class="accion-btn" (click)="getAllPropiedades()">Ver Todas</button>
+        <button class="accion-btn" (click)="createPropiedad()">Añadir Nueva</button>
+        <button class="accion-btn" (click)="updatePropiedad()">Actualizar</button>
+        <button class="accion-btn" (click)="deletePropiedad()">Eliminar</button>
+    </div>
+</main>

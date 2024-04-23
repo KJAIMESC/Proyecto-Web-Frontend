@@ -1,0 +1,55 @@
+.main-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.welcome-section, .info-section, .contact-section, .creators-section {
+    margin-bottom: 30px;
+}
+
+.welcome-image, .info-cards img {
+    max-width: 100%;
+    height: auto;
+}
+
+.info-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 10px;
+    width: 30%; 
+}
+
+.contact-form input, .contact-form textarea {
+    width: 90%;
+    margin: 10px 0;
+    padding: 8px;
+}
+
+.contact-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
+
+.creators-section {
+    font-size: 16px;
+    color: #666;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}

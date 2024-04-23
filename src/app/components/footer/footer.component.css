@@ -1,0 +1,8 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Altura ajustable según tus necesidades */
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+}

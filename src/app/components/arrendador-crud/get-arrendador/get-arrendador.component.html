@@ -1,17 +1,16 @@
-<p>get-arrendador works!</p>
-<div>
-    <input type="text" [(ngModel)]="searchId" (input)="onIdChange($any($event).target.value)" placeholder="Ingrese ID del arrendador">
-    <button (click)="buscarArrendador()">Buscar</button>
-  </div>
-  
-  <div *ngIf="arrendador">
-    <p>ID: {{ arrendador.id_arrendador }}</p>
-    <p>Nombres: {{ arrendador.nombres }}</p>
-    <p>Apellidos: {{ arrendador.apellidos }}</p>
-    <p>Correo: {{ arrendador.correo }}</p>
-    <!-- ... otros campos del arrendador -->
-  </div>
-  
-  <div *ngIf="errorMessage">
-    <p>Error: {{ errorMessage }}</p>
-  </div>
+<div class="search-container">
+  <p class="search-title">Buscar Arrendador</p>
+  <input type="text" [(ngModel)]="searchId" (input)="onIdChange($any($event).target.value)" placeholder="Ingrese ID del arrendador" class="search-input">
+  <button (click)="buscarArrendador()" class="search-button">Buscar</button>
+</div>
+
+<div *ngIf="arrendador" class="arrendador-info">
+  <p><strong>ID:</strong> {{ arrendador.id_arrendador }}</p>
+  <p><strong>Nombres:</strong> {{ arrendador.nombres }}</p>
+  <p><strong>Apellidos:</strong> {{ arrendador.apellidos }}</p>
+  <p><strong>Correo:</strong> {{ arrendador.correo }}</p>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  <p>Error: {{ errorMessage }}</p>
+</div>

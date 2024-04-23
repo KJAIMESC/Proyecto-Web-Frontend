@@ -1,0 +1,136 @@
+.header, .footer {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.nav-link {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.arrendador-main {
+    padding: 20px;
+    text-align: center;
+}
+
+.action-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #218838;
+}
+
+.welcome-section h1 {
+    color: #333;
+}
+
+.dashboard-title, .properties-title {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.dashboard-description, .properties-description {
+    margin-bottom: 20px;
+}
+
+.my-properties-section {
+    padding: 20px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.properties-button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.properties-button:hover {
+    background-color: #004085;
+}
+
+.intro-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 40px; 
+    text-align: left;
+}
+
+.text-container {
+    width: 50%;
+}
+
+.image-container img {
+    max-width: 90%;
+    height: auto;
+}
+
+/* Sección de Beneficios */
+.benefits-section {
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.benefits-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.benefit {
+    color: black;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Barra de Confianza */
+.trust-bar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+
+.action-btn {
+    /* Mejora los botones con sombras o transiciones */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* ... */
+}
+
+/* Sección de Propiedades */
+.my-properties-section .properties-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.property-icon {
+    width: 50px; /* Ajustar según el diseño */
+    margin-right: 15px;
+}

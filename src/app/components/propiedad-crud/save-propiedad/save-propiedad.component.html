@@ -1,6 +1,7 @@
-<p>save-propiedad works!</p>
 <h2>Crear Propiedad</h2>
-<form [formGroup]="propiedadForm" (ngSubmit)="savePropiedad()">
+<form [formGroup]="propiedadForm" (ngSubmit)="savePropiedad()" class="propiedad-form">
+  <h2>Registra los Datos</h2> 
+
     <div class="form-group">
       <label for="nombre">Nombre</label>
       <input type="text" class="form-control" id="nombre" formControlName="nombre" required>
@@ -83,5 +84,5 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="propiedadForm.invalid">Guardar</button>
+    <button type="submit" class="form-submit-button" [disabled]="propiedadForm.invalid">Guardar</button>
 </form>

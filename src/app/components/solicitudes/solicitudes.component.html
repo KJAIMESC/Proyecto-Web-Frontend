@@ -1,8 +1,16 @@
-<p>solicitudes works!</p>
-<button (click)="getSolicitud()">get solicitud</button>
-<button (click)="getAllSolicitudes()">get all solicitudes</button>
-<button (click)="createSolicitud()">create solicitud</button>
-<button (click)="deleteSolicitud()">delete solicitud</button>
-<p>------------------------------------------------</p>
-<router-outlet></router-outlet>
-<p>------------------------------------------------</p>
+<main class="solicitudes-container">
+    <h1 class="solicitudes-title">Mis Solicitudes</h1>
+    <p class="solicitudes-description">Revisa y gestiona tus solicitudes de arrendamiento.</p>
+    
+    <img src="assets/imagenes/finca2.png" alt="Imagen de una Finca" class="propiedades-image">
+
+    <section class="acciones-solicitudes">
+        <h2>Acciones Disponibles</h2>
+        <div class="acciones-list">
+            <button class="accion-btn" (click)="getSolicitud()">Consultar Solicitud</button>
+            <button class="accion-btn" (click)="getAllSolicitudes()">Ver Todas las Solicitudes</button>
+            <button class="accion-btn" (click)="createSolicitud()">Crear Solicitud</button>
+            <button class="accion-btn" (click)="deleteSolicitud()">Eliminar Solicitud</button>
+        </div>
+    </section>
+</main>

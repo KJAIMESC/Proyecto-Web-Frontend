@@ -1,11 +1,11 @@
-<div>
+<div class="search-container">
   <label for="arrendadorId">ID del Arrendador:</label>
-  <input type="number" id="arrendadorId" [(ngModel)]="searchId" placeholder="Enter ID">
-  <button (click)="searchId && loadArrendador(searchId)">Cargar Arrendador</button>
+  <input type="number" id="arrendadorId" [(ngModel)]="searchId" placeholder="Enter ID" class="search-input">
+  <button (click)="searchId && loadArrendador(searchId)" class="search-button">Cargar Arrendador</button>
 </div>
 
 <ng-container *ngIf="!isUpdatedSuccessfully; else updateSuccessTemplate">
-  <form *ngIf="currentArrendador" [formGroup]="arrendadorForm" (ngSubmit)="updateArrendador()">
+  <form *ngIf="currentArrendador" [formGroup]="arrendadorForm" (ngSubmit)="updateArrendador()" class="arrendador-form">
     <div class="form-group">
       <label for="nombres">Nombres</label>
       <input type="text" class="form-control" id="nombres" formControlName="nombres">
@@ -31,10 +31,12 @@
       <input type="password" class="form-control" id="contrasena" formControlName="contrasena">
     </div>
     
-    <button type="submit" [disabled]="arrendadorForm.invalid">Actualizar</button>
+    <button type="submit" class="form-submit-button" [disabled]="arrendadorForm.invalid">Actualizar</button>
   </form>
 </ng-container>
 
 <ng-template #updateSuccessTemplate>
-  <p>Arrendador actualizado con éxito.</p>
+  <div class="update-sucess-message">
+    <p>Arrendador actualizado con éxito.</p>
+  </div>
 </ng-template>

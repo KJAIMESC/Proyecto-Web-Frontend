@@ -1,9 +1,10 @@
-<p>save-arrendador works!</p>
 
-<form [formGroup]="arrendadorForm" (ngSubmit)="saveArrendador()">
-    <div class="form-group">
+<form [formGroup]="arrendadorForm" (ngSubmit)="saveArrendador()" class="arrendador-form">
+   <h2>Registra tus Datos</h2> 
+  
+  <div class="form-group">
       <label for="nombres">Nombres</label>
-      <input type="text" class="form-control" id="nombres" formControlName="nombres">
+      <input type="text" class="form-control" id="nombres" formControlName="nombres" placeholder="Enrique" required>
       <div *ngIf="arrendadorForm.get('nombres')?.invalid && arrendadorForm.get('nombres')?.touched" class="text-danger">
         Nombres requeridos
       </div>
@@ -11,7 +12,7 @@
 
     <div class="form-group">
       <label for="apellidos">Apellidos</label>
-      <input type="text" class="form-control" id="apellidos" formControlName="apellidos">
+      <input type="text" class="form-control" id="apellidos" formControlName="apellidos" placeholder="Iglesias" required>
       <div *ngIf="arrendadorForm.get('apellidos')?.invalid && arrendadorForm.get('apellidos')?.touched" class="text-danger">
         Apellidos requeridos
       </div>
@@ -19,7 +20,7 @@
 
     <div class="form-group">
       <label for="correo">Correo</label>
-      <input type="email" class="form-control" id="correo" formControlName="correo" required>
+      <input type="email" class="form-control" id="correo" formControlName="correo" placeholder="musiquitalinda@gmail.com" required>
       <div *ngIf="arrendadorForm.get('correo')?.invalid && arrendadorForm.get('correo')?.touched" class="text-danger">
         Correo electrónico inválido
       </div>
@@ -27,14 +28,14 @@
 
     <div class="form-group">
       <label for="telefono">Telefono</label>
-      <input type="tel" class="form-control" id="telefono" formControlName="telefono">
+      <input type="tel" class="form-control" id="telefono" formControlName="telefono" placeholder="1234567" required>
       <div *ngIf="arrendadorForm.get('telefono')?.invalid && arrendadorForm.get('telefono')?.touched" class="text-danger">
         Teléfono requerido
       </div>
     </div>
     <div class="form-group">
       <label for="contrasena">Contraseña</label>
-      <input type="password" class="form-control" id="contrasena" formControlName="contrasena" required>
+      <input type="password" class="form-control" id="contrasena" formControlName="contrasena" placeholder="******" required>
       <div *ngIf="arrendadorForm.get('contrasena')?.hasError('required') && arrendadorForm.get('contrasena')?.touched" class="text-danger">
         Contraseña requerida
       </div>
@@ -43,5 +44,5 @@
       </div>
     </div>
 
-    <button type="submit" [disabled]="arrendadorForm.invalid">Guardar</button>
+    <button type="submit" class="form-submit-button" [disabled]="arrendadorForm.invalid">Guardar</button>
 </form>

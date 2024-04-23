@@ -31,4 +31,8 @@ export class ArrendadoresComponent {
   deleteArrendador() {
     this.router.navigate(['delete'], { relativeTo: this.route})
   }
+
+  openPropiedad() {
+    this.router.navigate(['propiedades'])
+  }
 }

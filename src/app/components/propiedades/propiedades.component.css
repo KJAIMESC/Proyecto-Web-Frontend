@@ -1,0 +1,66 @@
+.mis-propiedades-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.propiedades-title {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.propiedades-description {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.propiedades-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.propiedades-normas h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.normas-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.icon {
+    width: 50px; 
+    height: auto;
+}
+
+
+.norma {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 10px;
+    width: 30%; 
+}
+
+.acciones-propiedades {
+    margin: 20px 0;
+}
+
+.accion-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.accion-btn:hover {
+    background-color: #0056b3;
+}

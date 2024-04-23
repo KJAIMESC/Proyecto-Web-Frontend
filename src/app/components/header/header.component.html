@@ -1,6 +1,12 @@
-<p>header works!</p>
-<button (click)="openArrendador()"> arrendador </button>
-<button (click)="openPropiedad()"> propiedad </button>
-<button (click)="openSolicitud()"> solicitud </button>
-<button (click)="openArrendatario()"> arrendatario </button>
-<p>------------------------------------------------</p>
+<header class="header">
+    <div class="logo">ARRIENDA TU FINCA</div>
+    <nav class="navigation">
+        <button class="nav-link" (click)="openArrendador()">Arrendador</button>
+        <button class="nav-link" (click)="openArrendatario()">Arrendatario</button>
+    </nav>
+</header>
+
+
+
+<!---button (click)="openPropiedad()"> propiedad </button>
+<button (click)="openSolicitud()"> solicitud </button>-->
