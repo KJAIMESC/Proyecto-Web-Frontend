@@ -1,7 +1,14 @@
-<ul>
-    <li *ngFor="let arrendador of arrendadores">
-      {{arrendador.id_arrendador}} -- {{ arrendador.nombres }} {{ arrendador.apellidos }} - {{ arrendador.correo }}
-    </li>
+<ul class="arrendador-list">
+  <li *ngFor="let arrendador of arrendadores">
+      <div class="arrendador-info">
+          <p><strong>ID:</strong> {{arrendador.id_arrendador}}</p>
+          <p><strong>Nombre:</strong> {{arrendador.nombres}} {{arrendador.apellidos}}</p>
+          <p><strong>Correo:</strong> {{arrendador.correo}}</p>
+          <p><strong>Teléfono:</strong> {{arrendador.telefono}}</p>
+      </div>
+      <div class="button-container">
+          <button class="action-btn update-btn" (click)="listUpdate(arrendador.id_arrendador || 0)">Actualizar</button> 
+          <button class="action-btn delete-btn" (click)="listDelete(arrendador.id_arrendador || 0)">Eliminar</button>
+      </div>
+  </li>
 </ul>
-<p>probando!</p>
-  

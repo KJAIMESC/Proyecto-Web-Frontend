@@ -44,6 +44,7 @@ export const routes: Routes = [
         { path: 'get-all', component: GetAllArrendadorComponent},
         { path: 'create', component: SaveArrendadorComponent },
         { path: 'update', component: UpdateArrendadorComponent },
+        { path: 'update/:id', component: UpdateArrendadorComponent},
         { path: 'delete', component: DeleteArrendadorComponent },
       ]
     },

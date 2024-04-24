@@ -1,8 +1,10 @@
-<div class="search-container">
+<div *ngIf="!currentArrendador" class="search-container">
   <label for="arrendadorId">ID del Arrendador:</label>
   <input type="number" id="arrendadorId" [(ngModel)]="searchId" placeholder="Enter ID" class="search-input">
-  <button (click)="searchId && loadArrendador(searchId)" class="search-button">Cargar Arrendador</button>
+  <button (click)="searchId !== null && loadArrendador(searchId!)" class="search-button" [disabled]="searchId === null">Cargar Arrendador</button>
 </div>
+
+<div *ngIf="message" class="error-message">{{ message }}</div>
 
 <ng-container *ngIf="!isUpdatedSuccessfully; else updateSuccessTemplate">
   <form *ngIf="currentArrendador" [formGroup]="arrendadorForm" (ngSubmit)="updateArrendador()" class="arrendador-form">
@@ -37,6 +39,5 @@
 
 <ng-template #updateSuccessTemplate>
   <div class="update-sucess-message">
-    <p>Arrendador actualizado con éxito.</p>
   </div>
 </ng-template>

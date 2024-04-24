@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Arrendador } from '../../../models/arrendador';
 import { ArrendadorService } from '../../../services/arrendador.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { ArrendadorService } from '../../../services/arrendador.service';
 export class GetAllArrendadorComponent implements OnInit {
   arrendadores: Arrendador[] = [];
 
-  constructor(private arrendadorService: ArrendadorService) {}
+  constructor(private arrendadorService: ArrendadorService, private router: Router){}
 
   ngOnInit(): void {
     this.getAllArrendador();
@@ -27,6 +28,21 @@ export class GetAllArrendadorComponent implements OnInit {
     }).catch((error) => {
       console.error(error);
     });
+  }
+
+  listUpdate(id: number){
+    this.router.navigate(['arrendadores', 'update', id]);
+  }
+
+  listDelete(id: number){
+    this.arrendadorService.deleteArrendador(id)
+      .then(() => {
+        console.log("Arrendador eliminado con éxito");
+        this.arrendadores = this.arrendadores.filter(arrendador => arrendador.id_arrendador !== id);
+      })
+      .catch(error => {
+        console.error("Error al eliminar el arrendador", error);
+      });
   }
 }
 

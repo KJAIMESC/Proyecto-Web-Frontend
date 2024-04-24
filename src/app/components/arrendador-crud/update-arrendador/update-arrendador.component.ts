@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Arrendador } from '../../../models/arrendador';
 import { ArrendadorService } from '../../../services/arrendador.service';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-update-arrendador',
@@ -18,7 +19,10 @@ export class UpdateArrendadorComponent implements OnInit {
   isUpdatedSuccessfully: boolean = false;
   message: string = '';
 
-  constructor(private arrendadorService: ArrendadorService) {
+  constructor(
+    private route: ActivatedRoute,
+    private arrendadorService: ArrendadorService
+  ) {
     this.arrendadorForm = new FormGroup({
       id_arrendador: new FormControl('', [Validators.required]),
       nombres: new FormControl('', [Validators.required]),
@@ -29,22 +33,26 @@ export class UpdateArrendadorComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      if (id) {
+        this.searchId = +id;
+        this.loadArrendador(this.searchId);
+      }
+    });
+  }
 
   loadArrendador(id: number) {
-    if (id != null) {
-      this.arrendadorService.getArrendadorById(id).then(arrendador => {
-        this.currentArrendador = arrendador;
-        this.arrendadorForm.patchValue(arrendador);
-        this.isUpdatedSuccessfully = false;
-        this.message = '';
-      }).catch(error => {
-        console.error('Error al cargar el arrendador:', error);
-        this.message = 'Error loading arrendador. Please check the ID.';
-      });
-    } else {
-      this.message = 'Please enter a valid ID.';
-    }
+    this.arrendadorService.getArrendadorById(id).then(arrendador => {
+      this.currentArrendador = arrendador;
+      this.arrendadorForm.patchValue(arrendador);
+      this.isUpdatedSuccessfully = false;
+      this.message = '';
+    }).catch(error => {
+      console.error('Error al cargar el arrendador:', error);
+      this.message = error.response.data.message;
+    });
   }
 
   updateArrendador() {
@@ -57,12 +65,11 @@ export class UpdateArrendadorComponent implements OnInit {
         })
         .catch(error => {
           console.error('Error al actualizar arrendador:', error);
-          this.message = 'Error updating arrendador.';
+          this.message = error.response.data.message;
           this.isUpdatedSuccessfully = false;
         });
     } else {
       this.message = 'Please check the form fields.';
     }
   }
-  
 }
