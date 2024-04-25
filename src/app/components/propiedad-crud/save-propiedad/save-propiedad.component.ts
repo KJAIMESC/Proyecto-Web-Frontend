@@ -33,14 +33,48 @@ export class SavePropiedadComponent {
     if (this.propiedadForm.valid) {
       const formValue = this.propiedadForm.value;
       const newPropiedad: Propiedad = {
-        ...formValue,
+        cantidadBanos: Number(formValue.cantidadBanos), 
         tipoIngreso: { id_tipoIngreso: Number(formValue.tipoIngresoId) },
         arrendador: { id_arrendador: Number(formValue.arrendadorId) }
       };
-
+      if (formValue.nombre) {
+        newPropiedad.nombre = formValue.nombre;
+      }
+      if (formValue.descripcion) {
+        newPropiedad.descripcion = formValue.descripcion;
+      }
+      if (formValue.cantidadHabitaciones) {
+        newPropiedad.cantidadHabitaciones = Number(formValue.cantidadHabitaciones);
+      }
+      if (formValue.departamento) {
+        newPropiedad.departamento = formValue.departamento;
+      }
+      if (formValue.municipio) {
+        newPropiedad.municipio = formValue.municipio;
+      }
+      if (formValue.permitidoMascotas) {
+        newPropiedad.permitido_mascotas = formValue.permitidoMascotas;
+      }
+      if (formValue.piscina) {
+        newPropiedad.piscina = formValue.piscina;
+      }
+      if (formValue.valorNoche) {
+        newPropiedad.valorNoche = Number(formValue.valorNoche);
+      }
+      if (formValue.activado) {
+        newPropiedad.activado = formValue.activado;
+      }
+      console.log('Data to be sent:', newPropiedad);
       this.propiedadService.savePropiedad(newPropiedad)
-        .then(() => alert('Propiedad guardada con éxito'))
-        .catch(error => console.error('Error al guardar la propiedad:', error));
+        .then(
+          response => { 
+            alert('Propiedad guardada con éxito');
+          },
+          error => {
+            console.error('Error al guardar la propiedad:', error);
+          }
+        );
     }
   }
+  
 }

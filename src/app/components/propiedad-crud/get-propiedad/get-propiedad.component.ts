@@ -27,7 +27,7 @@ export class GetPropiedadComponent {
       }).catch((error) => {
         console.error(error);
         this.propiedad = null;
-        this.errorMessage = 'Propiedad no encontrada o error en la búsqueda.';
+        this.errorMessage = error.response.data.message;
       });
     } else {
       this.errorMessage = 'Por favor ingrese un ID válido.';

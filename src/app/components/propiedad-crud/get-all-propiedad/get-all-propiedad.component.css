@@ -1,0 +1,57 @@
+.propiedad-list {
+    list-style: none;
+}
+
+.propiedad-list li {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.propiedad-info {
+    flex-grow: 1;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.propiedad-info p {
+    margin: 5px 0;
+}
+
+.button-container {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.action-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+.update-btn {
+    margin-right: 5px;
+}
+
+.error-message {
+    background-color: #22abbd; 
+    color: white; 
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 10px auto;
+    max-width: 500px;
+}

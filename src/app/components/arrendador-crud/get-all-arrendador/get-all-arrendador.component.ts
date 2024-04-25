@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class GetAllArrendadorComponent implements OnInit {
   arrendadores: Arrendador[] = [];
+  errorMessage: string = '';
 
   constructor(private arrendadorService: ArrendadorService, private router: Router){}
 
@@ -42,6 +43,7 @@ export class GetAllArrendadorComponent implements OnInit {
       })
       .catch(error => {
         console.error("Error al eliminar el arrendador", error);
+        this.errorMessage = error.response.data.message;
       });
   }
 }

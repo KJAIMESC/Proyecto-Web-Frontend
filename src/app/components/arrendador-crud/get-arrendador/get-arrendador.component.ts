@@ -27,7 +27,7 @@ export class GetArrendadorComponent {
       }).catch((error) => {
         console.error(error);
         this.arrendador = null;
-        this.errorMessage = 'Arrendador no encontrado o error en la búsqueda.';
+        this.errorMessage = error.response.data.message;
       });
     } else {
       this.errorMessage = 'Por favor ingrese un ID válido.';

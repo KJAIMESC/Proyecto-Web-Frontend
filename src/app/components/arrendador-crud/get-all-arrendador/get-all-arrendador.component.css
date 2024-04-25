@@ -44,3 +44,13 @@
 .update-btn {
     margin-right: 5px;
 }
+
+.error-message {
+    background-color: #22abbd; 
+    color: white; 
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 10px auto;
+    max-width: 500px;
+}
