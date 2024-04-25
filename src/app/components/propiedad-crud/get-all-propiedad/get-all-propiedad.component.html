@@ -1,20 +1,27 @@
-<p>get-all-propiedad works!</p>
-<p *ngIf="errorMessage">{{ errorMessage }}</p>
-<div *ngIf="!errorMessage">
-  <h2>Todas las Propiedades</h2>
-  <ul>
-    <li *ngFor="let propiedad of propiedades">
-      <p>ID: {{ propiedad.id_propiedad }}</p>
-      <p>Nombre: {{ propiedad.nombre }}</p>
-      <p>Descripción: {{ propiedad.descripcion }}</p>
-      <p>Cantidad de Habitaciones: {{ propiedad.cantidad_habitaciones }}</p>
-      <p>Cantidad de Baños: {{ propiedad.cantidad_banos }}</p>
-      <p>Valor por Noche: {{ propiedad.valor_noche }}</p>
-      <p>Departamento: {{ propiedad.departamento }}</p>
-      <p>Municipio: {{ propiedad.municipio }}</p>
-      <p>Permitido Mascotas: {{ propiedad.permitido_mascotas ? 'Sí' : 'No' }}</p>
-      <p>Piscina: {{ propiedad.piscina ? 'Sí' : 'No' }}</p>
-      <p>Activado: {{ propiedad.activado ? 'Sí' : 'No' }}</p>
+<p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+<div>
+  <ul class="propiedad-list">
+    <li *ngFor="let propiedad of propiedades" class="propiedad-item">
+      <div class="propiedad-info">
+        <p><strong>ID:</strong> {{ propiedad.id_propiedad }}</p>
+        <p><strong>Nombre:</strong> {{ propiedad.nombre }}</p>
+        <p><strong>Descripción:</strong> {{ propiedad.descripcion }}</p>
+        <p><strong>Cantidad de Habitaciones:</strong> {{ propiedad.cantidadHabitaciones}}</p>
+        <p><strong>Cantidad de Baños:</strong> {{ propiedad.cantidadBanos }}</p>
+        <p><strong>Valor por Noche:</strong> {{ propiedad.valorNoche }}</p>
+        <p><strong>Departamento:</strong> {{ propiedad.departamento }}</p>
+        <p><strong>Municipio:</strong> {{ propiedad.municipio }}</p>
+        <p><strong>Permitido Mascotas:</strong> {{ propiedad.permitido_mascotas ? 'Sí' : 'No' }}</p>
+        <p><strong>Piscina:</strong> {{ propiedad.piscina ? 'Sí' : 'No' }}</p>
+        <p><strong>Activado:</strong> {{ propiedad.activado ? 'Sí' : 'No' }}</p>
+        <p><strong>Tipo de Ingreso ID:</strong> {{ propiedad.tipoIngreso?.id_tipoIngreso}}<p>
+        <p><strong>Arrendador ID:</strong> {{ propiedad.arrendador?.id_arrendador }}</p>
+      </div>
+      <div class="button-container">
+        <button class="action-btn update-btn" (click)="updatePropiedad(propiedad.id_propiedad || 0)"><strong>Actualizar</strong></button> 
+        <button class="action-btn delete-btn" (click)="deletePropiedad(propiedad.id_propiedad || 0)"><strong>Eliminar</strong></button>
+      </div>
     </li>
   </ul>
 </div>

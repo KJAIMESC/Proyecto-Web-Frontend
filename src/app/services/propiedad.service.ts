@@ -44,5 +44,9 @@ export class PropiedadService {
     return axios.post<Propiedad>(this.apiUrl, propiedad).then(response => response.data);
   }
 
+  updatePropiedad(propiedad: Propiedad): Promise<Propiedad> {
+    return axios.put<Propiedad>(this.apiUrl, propiedad).then(response => response.data);
+  }
+
   
 }

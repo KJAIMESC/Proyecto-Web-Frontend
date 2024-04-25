@@ -33,6 +33,7 @@ export const routes: Routes = [
         { path: 'get-all', component: GetAllPropiedadComponent},
         { path: 'create', component: SavePropiedadComponent},
         { path: 'update', component: UpdatePropiedadComponent},
+        { path: 'update/:id', component: UpdatePropiedadComponent},
         { path: 'delete', component: DeletePropiedadComponent}
         ]
      },

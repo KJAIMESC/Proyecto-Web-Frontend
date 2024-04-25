@@ -4,21 +4,20 @@
     <button (click)="buscarPropiedad()">Buscar</button>
 </div>
 
+<p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
 <div *ngIf="propiedad" class="propiedad-info">
     <p>ID: {{ propiedad.id_propiedad }}</p>
     <p>Nombre: {{ propiedad.nombre }}</p>
     <p>Descripción: {{ propiedad.descripcion }}</p>
-    <p>Cantidad de Habitaciones: {{ propiedad.cantidad_habitaciones }}</p>
-    <p>Cantidad de Baños: {{ propiedad.cantidad_banos }}</p>
-    <p>Valor por Noche: {{ propiedad.valor_noche }}</p>
+    <p>Cantidad de Habitaciones: {{ propiedad.cantidadHabitaciones}}</p>
+    <p>Cantidad de Baños: {{ propiedad.cantidadBanos }}</p>
+    <p>Valor por Noche: {{ propiedad.valorNoche }}</p>
     <p>Departamento: {{ propiedad.departamento }}</p>
     <p>Municipio: {{ propiedad.municipio }}</p>
     <p>Permitido Mascotas: {{ propiedad.permitido_mascotas ? 'Sí' : 'No' }}</p>
     <p>Piscina: {{ propiedad.piscina ? 'Sí' : 'No' }}</p>
     <p>Activado: {{ propiedad.activado ? 'Sí' : 'No' }}</p>
-    <!-- Agrega más campos según necesites mostrar -->
-</div>
-
-<div *ngIf="errorMessage" class="error-message">
-    <p>Error: {{ errorMessage }}</p>
+    <p>Tipo de Ingreso ID: {{ propiedad.tipoIngreso?.id_tipoIngreso }}</p>
+    <p>Arrendador ID: {{ propiedad.arrendador?.id_arrendador }}</p>
 </div>
