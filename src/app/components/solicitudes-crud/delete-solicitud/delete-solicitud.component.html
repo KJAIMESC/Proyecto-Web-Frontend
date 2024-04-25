@@ -1,1 +1,9 @@
-<p>delete-solicitud works!</p>
+<form [formGroup]="deleteForm" (ngSubmit)="onDelete()">
+    <h2>Eliminar Solicitud</h2>
+    <div>
+      <label for="id">ID de la Solicitud:</label>
+      <input type="text" formControlName="id" id="id">
+    </div>
+    <button type="submit" [disabled]="!deleteForm.valid">Eliminar Solicitud</button>
+  </form>
+  
