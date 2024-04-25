@@ -15,6 +15,8 @@ export class DeleteSolicitudComponent {
   deleteForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
   });
+successMessage: any;
+errorMessage: any;
 
   constructor(private solicitudService: SolicitudService) { }
 

@@ -1,41 +1,78 @@
-<form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()">
-    <h2>Crear Solicitud</h2>
-    <div>
-      <label>Fecha de Solicitud:</label>
-      <input type="datetime-local" formControlName="fechaSolicitud">
-    </div>
-    <div>
-      <label>Hora de Solicitud:</label>
-      <input type="time" formControlName="horaSolicitud">
-    </div>
-    <div>
-      <label>Fecha de Llegada:</label>
-      <input type="datetime-local" formControlName="fechaLlegada">
-    </div>
-    <div>
-      <label>Fecha de Salida:</label>
-      <input type="datetime-local" formControlName="fechaSalida">
-    </div>
-    <div>
-      <label>Valor:</label>
-      <input type="number" formControlName="valor">
-    </div>
-    <div>
-      <label>Calificación:</label>
-      <input type="number" formControlName="calificacion">
-    </div>
-    <div>
-      <label>ID del Estado de Solicitud:</label>
-      <input type="number" formControlName="id_EstadoSolicitud">
-    </div>
-    <div>
-      <label>ID del Arrendatario:</label>
-      <input type="number" formControlName="id_arrendatario">
-    </div>
-    <div>
-      <label>ID de la Propiedad:</label>
-      <input type="number" formControlName="id_propiedad">
-    </div>
-    <button type="submit" [disabled]="!solicitudForm.valid">Guardar Solicitud</button>
-  </form>
-  
+
+  <form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()" class="solicitud-form">
+      <h2>Crear Solicitud</h2>
+
+      <div class="form-group">
+        <label>Fecha de Solicitud:</label>
+        <input type="datetime-local" formControlName="fechaSolicitud"  class="form-control">
+        <div *ngIf="solicitudForm.get('fechaSolicitud')?.invalid && solicitudForm.get('fechaSolicitud')?.touched" class="text-danger">
+          Fecha Solicitud requerida
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Hora de Solicitud:</label>
+        <input type="time" formControlName="horaSolicitud"  class="form-control" required>
+        <div *ngIf="solicitudForm.get('horaSolicitud')?.invalid && solicitudForm.get('horaSolicitud')?.touched" class="text-danger">
+          Hora Solicitud requerida
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Fecha de Llegada:</label>
+        <input type="datetime-local" formControlName="fechaLlegada"  class="form-control" required>
+        <div *ngIf="solicitudForm.get('fechaLlegada')?.invalid && solicitudForm.get('fechaLlegada')?.touched" class="text-danger">
+         Fecha Llegada requerida
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Fecha de Salida:</label>
+        <input type="datetime-local" formControlName="fechaSalida"  class="form-control" required>
+        <div *ngIf="solicitudForm.get('fechaSalida')?.invalid && solicitudForm.get('fechaSalida')?.touched" class="text-danger">
+          Fecha Salida requerida
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Valor:</label>
+        <input type="number" formControlName="valor"  class="form-control" required>
+        <div *ngIf="solicitudForm.get('valor')?.invalid && solicitudForm.get('valor')?.touched" class="text-danger">
+          Valor requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Calificación:</label>
+        <input type="number" formControlName="calificacion"  class="form-control" required>
+        <div *ngIf="solicitudForm.get('calificacion')?.invalid && solicitudForm.get('calificacion')?.touched" class="text-danger">
+          Calificacion requirida
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ID del Estado de Solicitud:</label>
+        <input type="number" formControlName="id_EstadoSolicitud"  class="form-control" required>
+        <div *ngIf="solicitudForm.get('id_EstadoSolicitud')?.invalid && solicitudForm.get('id_EstadoSolicitud')?.touched" class="text-danger">
+          ID Solicitud requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ID del Arrendatario:</label>
+        <input type="number" formControlName="id_arrendatario"  class="form-control" required>
+        <div *ngIf="solicitudForm.get('id_arrendatario')?.invalid && solicitudForm.get('id_arrendatario')?.touched" class="text-danger">
+          ID  Arrendatario requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>ID de la Propiedad:</label>
+        <input type="number" formControlName="id_propiedad"  class="form-control" required>
+        <div *ngIf="solicitudForm.get('id_propiedad')?.invalid && solicitudForm.get('id_propiedad')?.touched" class="text-danger">
+          ID Propiedad requerido
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!solicitudForm.valid" class="form-submit-button">Guardar Solicitud</button>
+    </form>
