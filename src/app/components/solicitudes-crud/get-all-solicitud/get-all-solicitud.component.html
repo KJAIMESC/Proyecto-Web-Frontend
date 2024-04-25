@@ -1,1 +1,24 @@
-<p>get-all-solicitud works!</p>
+<h1>Listado de Solicitudes</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Fecha de Solicitud</th>
+      <th>Hora de Solicitud</th>
+      <th>Fecha de Llegada</th>
+      <th>Fecha de Salida</th>
+      <th>Valor</th>
+      <th>Calificación</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let solicitud of solicitudes">
+      <td>{{ solicitud.fechaSolicitud | date:'medium' }}</td>
+      <td>{{ solicitud.horaSolicitud | date:'shortTime' }}</td>
+      <td>{{ solicitud.fechaLlegada | date:'medium' }}</td>
+      <td>{{ solicitud.fechaSalida | date:'medium' }}</td>
+      <td>{{ solicitud.valor | currency }}</td>
+      <td>{{ solicitud.calificacion }}</td>
+    </tr>
+  </tbody>
+</table>
+

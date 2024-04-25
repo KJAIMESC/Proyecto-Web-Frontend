@@ -1,1 +1,17 @@
-<p>get-solicitud works!</p>
+<div>
+    <h2>Buscar Solicitud</h2>
+    <input type="text" [(ngModel)]="searchId" (ngModelChange)="onIdChange($event)" placeholder="Ingrese el ID de la solicitud">
+    <button (click)="buscarSolicitud()">Buscar</button>
+  
+    <div *ngIf="solicitud">
+      <h3>Detalles de la Solicitud</h3>
+      <p><strong>Fecha de Solicitud:</strong> {{ solicitud.fechaSolicitud | date:'medium' }}</p>
+      <p><strong>Hora de Solicitud:</strong> {{ solicitud.horaSolicitud | date:'shortTime' }}</p>
+      <p><strong>Fecha de Llegada:</strong> {{ solicitud.fechaLlegada | date:'medium' }}</p>
+      <p><strong>Fecha de Salida:</strong> {{ solicitud.fechaSalida | date:'medium' }}</p>
+      <p><strong>Valor:</strong> {{ solicitud.valor | currency }}</p>
+      <p><strong>Calificación:</strong> {{ solicitud.calificacion }}</p>
+    </div>
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+  

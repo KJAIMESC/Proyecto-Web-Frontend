@@ -1,1 +1,41 @@
-<p>save-solicitud works!</p>
+<form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()">
+    <h2>Crear Solicitud</h2>
+    <div>
+      <label>Fecha de Solicitud:</label>
+      <input type="datetime-local" formControlName="fechaSolicitud">
+    </div>
+    <div>
+      <label>Hora de Solicitud:</label>
+      <input type="time" formControlName="horaSolicitud">
+    </div>
+    <div>
+      <label>Fecha de Llegada:</label>
+      <input type="datetime-local" formControlName="fechaLlegada">
+    </div>
+    <div>
+      <label>Fecha de Salida:</label>
+      <input type="datetime-local" formControlName="fechaSalida">
+    </div>
+    <div>
+      <label>Valor:</label>
+      <input type="number" formControlName="valor">
+    </div>
+    <div>
+      <label>Calificación:</label>
+      <input type="number" formControlName="calificacion">
+    </div>
+    <div>
+      <label>ID del Estado de Solicitud:</label>
+      <input type="number" formControlName="id_EstadoSolicitud">
+    </div>
+    <div>
+      <label>ID del Arrendatario:</label>
+      <input type="number" formControlName="id_arrendatario">
+    </div>
+    <div>
+      <label>ID de la Propiedad:</label>
+      <input type="number" formControlName="id_propiedad">
+    </div>
+    <button type="submit" [disabled]="!solicitudForm.valid">Guardar Solicitud</button>
+  </form>
+  
