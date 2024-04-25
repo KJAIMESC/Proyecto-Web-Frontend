@@ -1,22 +1,7 @@
+<p *ngIf="message" class="error-message">{{ message }}</p>
 
-  <form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()" class="solicitud-form">
+  <form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()" class="solicitud-form" *ngIf="!message">
       <h2>Crear Solicitud</h2>
-
-      <div class="form-group">
-        <label>Fecha de Solicitud:</label>
-        <input type="datetime-local" formControlName="fechaSolicitud"  class="form-control">
-        <div *ngIf="solicitudForm.get('fechaSolicitud')?.invalid && solicitudForm.get('fechaSolicitud')?.touched" class="text-danger">
-          Fecha Solicitud requerida
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Hora de Solicitud:</label>
-        <input type="datetime-local" formControlName="horaSolicitud"  class="form-control" required>
-        <div *ngIf="solicitudForm.get('horaSolicitud')?.invalid && solicitudForm.get('horaSolicitud')?.touched" class="text-danger">
-          Hora Solicitud requerida
-        </div>
-      </div>
 
       <div class="form-group">
         <label>Fecha de Llegada:</label>
@@ -39,14 +24,6 @@
         <input type="number" formControlName="valor"  class="form-control" required>
         <div *ngIf="solicitudForm.get('valor')?.invalid && solicitudForm.get('valor')?.touched" class="text-danger">
           Valor requerido
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Calificación:</label>
-        <input type="number" formControlName="calificacion"  class="form-control" required>
-        <div *ngIf="solicitudForm.get('calificacion')?.invalid && solicitudForm.get('calificacion')?.touched" class="text-danger">
-          Calificacion requirida
         </div>
       </div>
 

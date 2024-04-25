@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class GetAllSolicitudComponent implements OnInit {
   solicitudes: Solicitud[] = [];
+  message: string = '';
 
   constructor(private solicitudService: SolicitudService) {}
 
@@ -27,6 +28,18 @@ export class GetAllSolicitudComponent implements OnInit {
       })
       .catch(error => {
         console.error('Error al cargar las solicitudes:', error);
+      });
+  }
+  deleteSolicitud(id: number) {
+    this.solicitudService.deleteSolicitud(id)
+      .then(() => {
+        console.log("Solicitud eliminada con éxito");
+        this.message = "Solicitud eliminada con éxito";
+        this.solicitudes = this.solicitudes.filter(solicitud => solicitud.id_solicitud !== id);
+      })
+      .catch(error => {
+        console.error("Error al eliminar la solicitud", error);
+        this.message = error.response.data.message;
       });
   }
 }

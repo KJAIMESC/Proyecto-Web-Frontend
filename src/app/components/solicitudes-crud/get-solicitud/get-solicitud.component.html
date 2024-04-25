@@ -4,8 +4,10 @@
     <input type="text" [(ngModel)]="searchId" (ngModelChange)="onIdChange($event)" placeholder="Ingrese el ID de la solicitud">
     <button (click)="buscarSolicitud()">Buscar</button>
   </div>
+
+  <p *ngIf="message" class="error-message">{{ message }}</p>
   
-  <div class="details-container">
+  <div class="details-container" *ngIf="!message">
     <div *ngIf="solicitud">
       <h3>Detalles de la Solicitud</h3>
       <p><strong>Fecha de Solicitud:</strong> {{ solicitud.fechaSolicitud | date:'medium' }}</p>
@@ -18,7 +20,6 @@
       <p><strong>Nombre Arrendatario:</strong> {{ solicitud.arrendatario?.nombres }}</p>
       <p><strong>Nombre Propiedad:</strong> {{ solicitud.propiedad?.nombre }}</p>
     </div>
-    <p *ngIf="errorMessage">{{ errorMessage }}</p>
   </div>
 </div>
   

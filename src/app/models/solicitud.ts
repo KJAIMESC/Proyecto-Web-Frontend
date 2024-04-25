@@ -1,5 +1,6 @@
 export class Solicitud {
     constructor(
+        public id_solicitud?: number | null,
         public fechaSolicitud?: Date | null,
         public horaSolicitud?: Date | null,
         public fechaLlegada?: Date | null,

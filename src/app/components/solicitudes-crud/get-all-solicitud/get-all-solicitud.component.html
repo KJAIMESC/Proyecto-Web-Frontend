@@ -1,7 +1,9 @@
 <h1>Listado de Solicitudes</h1>
+<p *ngIf="message" class="error-message">{{ message }}</p>
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Fecha de Solicitud</th>
       <th>Hora de Solicitud</th>
       <th>Fecha de Llegada</th>
@@ -11,10 +13,12 @@
       <th>Estado Solicitud</th>
       <th>Nombre Arrendatario</th>
       <th>Nombre Propiedad</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let solicitud of solicitudes">
+      <td>{{ solicitud.id_solicitud}}</td>
       <td>{{ solicitud.fechaSolicitud | date:'medium' }}</td>
       <td>{{ solicitud.horaSolicitud | date:'shortTime' }}</td>
       <td>{{ solicitud.fechaLlegada | date:'medium' }}</td>
@@ -24,6 +28,7 @@
       <td>{{ solicitud.estadoSolicitud?.estado }}</td>
       <td>{{ solicitud.arrendatario?.nombres }}</td>
       <td>{{ solicitud.propiedad?.nombre }}</td>
+      <td><button class="action-btn delete-btn" (click)="deleteSolicitud(solicitud.id_solicitud || 0)"><strong>Eliminar</strong></button></td>
     </tr>
   </tbody>
 </table>

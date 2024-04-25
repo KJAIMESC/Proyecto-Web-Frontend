@@ -13,7 +13,7 @@ import { SolicitudService } from '../../../services/solicitud.service';
 })
 export class GetSolicitudComponent {
   solicitud: Solicitud | null = null;
-  errorMessage: string = '';
+  message: string = '';
   searchId: string = '';
 
   constructor(private solicitudService: SolicitudService) { }
@@ -23,14 +23,14 @@ export class GetSolicitudComponent {
     if (id) {
       this.solicitudService.getSolicitudById(id).then(solicitud => {
         this.solicitud = solicitud;
-        this.errorMessage = '';
+        this.message = '';
       }).catch(error => {
         console.error('Error al obtener la solicitud:', error);
         this.solicitud = null;
-        this.errorMessage = 'Solicitud no encontrada o error en la búsqueda.';
+        this.message = error.response.data.message;
       });
     } else {
-      this.errorMessage = 'Por favor ingrese un ID válido.';
+      this.message = 'Por favor ingrese un ID válido.';
     }
   }
 

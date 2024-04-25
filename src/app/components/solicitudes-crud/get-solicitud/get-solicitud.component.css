@@ -35,4 +35,14 @@
   .details-container p {
     margin: 5px 0; /* Margen arriba y abajo */
   }
+
+  .error-message {
+    background-color: #22abbd; 
+    color: white; 
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 10px auto;
+    max-width: 500px;
+}
   

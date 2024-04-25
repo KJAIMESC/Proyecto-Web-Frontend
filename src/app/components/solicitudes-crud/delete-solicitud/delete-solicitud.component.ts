@@ -15,27 +15,25 @@ export class DeleteSolicitudComponent {
   deleteForm = new FormGroup({
     id: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
   });
-successMessage: any;
-errorMessage: any;
+  message: string = '';
 
   constructor(private solicitudService: SolicitudService) { }
 
   onDelete() {
     if (this.deleteForm.valid) {
-      const id = Number(this.deleteForm.get('id')?.value); // Convertir el valor de string a número
-  
-      if (!isNaN(id) && id > 0) { // Verificar que el ID es un número válido y positivo
-        this.solicitudService.deleteSolicitud(id).then(() => { // Pasar el número, no el string 'id'
-          alert('Solicitud eliminada con éxito');
+      const id = Number(this.deleteForm.get('id')?.value);
+      if (!isNaN(id) && id > 0) { 
+        this.solicitudService.deleteSolicitud(id).then(() => { 
+          this.message = 'Solicitud eliminada con éxito';
         }).catch(error => {
           console.error('Error al eliminar la solicitud:', error);
-          alert('Error al eliminar la solicitud');
+          this.message = error.response.data.message;
         });
       } else {
-        alert('Por favor ingrese un ID válido.');
+        this.message = 'Por favor ingrese un ID válido.';
       }
     } else {
-      alert('Por favor complete el formulario correctamente.');
+      this.message = 'Por favor llene el formulario correctamente.';
     }
   }
 }
