@@ -1,3 +1,5 @@
+<p *ngIf="errorMessage" class="error-message">Error: {{ errorMessage }}</p>
+
 <ul class="arrendador-list">
   <li *ngFor="let arrendador of arrendadores">
       <div class="arrendador-info">

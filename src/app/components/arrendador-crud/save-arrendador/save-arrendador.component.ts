@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 export class SaveArrendadorComponent {
   arrendadorForm: FormGroup;
   arrendador: Arrendador = new Arrendador();
+  message: string = '';
 
   constructor(private arrendadorService: ArrendadorService) { // Fixed typo in constructor
     this.arrendadorForm = new FormGroup({
@@ -42,10 +43,11 @@ export class SaveArrendadorComponent {
     this.arrendadorService.saveArrendador(this.arrendador)
       .then(
         response => { 
-          window.location.href = '/arrendadores';
+          this.message = 'Arrendador guardado con éxito';
         },
         error => {
           console.log("Error", error);
+          this.message = error.response.data.message;
         }
       );
   }

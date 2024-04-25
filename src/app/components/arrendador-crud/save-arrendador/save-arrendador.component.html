@@ -1,5 +1,6 @@
+<p *ngIf="message" class="error-message">{{message}}</p>
 
-<form [formGroup]="arrendadorForm" (ngSubmit)="saveArrendador()" class="arrendador-form">
+<form [formGroup]="arrendadorForm" (ngSubmit)="saveArrendador()" class="arrendador-form" *ngIf="!message">
    <h2>Registra tus Datos</h2> 
   
   <div class="form-group">

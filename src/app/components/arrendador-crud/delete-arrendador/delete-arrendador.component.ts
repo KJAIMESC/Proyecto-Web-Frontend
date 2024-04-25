@@ -12,8 +12,7 @@ import { ArrendadorService } from '../../../services/arrendador.service';
 })
 export class DeleteArrendadorComponent {
   searchId: string = '';
-  successMessage: string = '';
-  errorMessage: string = '';
+  message: string = '';
 
   constructor(private arrendadorService: ArrendadorService) {}
 
@@ -21,14 +20,13 @@ export class DeleteArrendadorComponent {
     const id = Number(this.searchId);
     if (id) {
       this.arrendadorService.deleteArrendador(id).then(() => {
-        this.successMessage = `Arrendador con ID ${id} eliminado exitosamente.`;
-        this.errorMessage = '';
+        this.message = `Arrendador con ID ${id} eliminado exitosamente.`;
       }).catch((error) => {
         console.error(error);
-        this.errorMessage = `Error al eliminar el arrendador: ${error.message}`;
+        this.message = error.response.data.message;
       });
     } else {
-      this.errorMessage = 'Por favor ingrese un ID válido.';
+      this.message = 'Por favor ingrese un ID válido.';
     }
   }
 
