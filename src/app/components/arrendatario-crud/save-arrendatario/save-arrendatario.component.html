@@ -1,1 +1,54 @@
+<<<<<<< Updated upstream
 <p>save-arrendatario works!</p>
+=======
+<p *ngIf="message" class="error-message"> {{message}}</p>
+
+<form [formGroup]="arrendatarioForm" (ngSubmit)="saveArrendatario()" class="arrendatario-form" *ngIf="!message">
+    <h2>Registra tus Datos</h2> 
+   
+   <div class="form-group">
+       <label for="nombres">Nombres</label>
+       <input type="text" class="form-control" id="nombres" formControlName="nombres" placeholder="Gabriel" required>
+       <div *ngIf="arrendatarioForm.get('nombres')?.invalid && arrendatarioForm.get('nombres')?.touched" class="text-danger">
+         Nombres requeridos
+       </div>
+     </div>
+ 
+     <div class="form-group">
+       <label for="apellidos">Apellidos</label>
+       <input type="text" class="form-control" id="apellidos" formControlName="apellidos" placeholder="Garcia" required>
+       <div *ngIf="arrendatarioForm.get('apellidos')?.invalid && arrendatarioForm.get('apellidos')?.touched" class="text-danger">
+         Apellidos requeridos
+       </div>
+     </div>
+ 
+     <div class="form-group">
+       <label for="correo">Correo</label>
+       <input type="email" class="form-control" id="correo" formControlName="correo" placeholder="libritoAmarillo@gmail.com" required>
+       <div *ngIf="arrendatarioForm.get('correo')?.invalid && arrendatarioForm.get('correo')?.touched" class="text-danger">
+         Correo electrónico inválido
+       </div>
+     </div>
+ 
+     <div class="form-group">
+       <label for="telefono">Telefono</label>
+       <input type="tel" class="form-control" id="telefono" formControlName="telefono" placeholder="1290456" required>
+       <div *ngIf="arrendatarioForm.get('telefono')?.invalid && arrendatarioForm.get('telefono')?.touched" class="text-danger">
+         Teléfono requerido
+       </div>
+     </div>
+     <div class="form-group">
+       <label for="contrasena">Contraseña</label>
+       <input type="password" class="form-control" id="contrasena" formControlName="contrasena" placeholder="******" required>
+       <div *ngIf="arrendatarioForm.get('contrasena')?.hasError('required') && arrendatarioForm.get('contrasena')?.touched" class="text-danger">
+         Contraseña requerida
+       </div>
+       <div *ngIf="arrendatarioForm.get('contrasena')?.hasError('minlength') && arrendatarioForm.get('contrasena')?.touched" class="text-danger">
+         La contraseña debe tener al menos 8 caracteres
+       </div>
+     </div>
+ 
+     <button type="submit" class="form-submit-button" [disabled]="arrendatarioForm.invalid">Guardar</button>
+ </form>
+ 
+>>>>>>> Stashed changes

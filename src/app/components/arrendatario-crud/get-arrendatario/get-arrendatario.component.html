@@ -1,1 +1,19 @@
+<<<<<<< Updated upstream
 <p>get-arrendatario works!</p>
+=======
+<div class="search-container">
+    <p class="search-title">Buscar Arrendatario</p>
+    <input type="text" [(ngModel)]="searchId" (input)="onIdChange($any($event).target.value)" placeholder="Ingrese ID del arrendatario" class="search-input">
+    <button (click)="buscarArrendatario()" class="search-button">Buscar</button>
+  </div>
+  
+  <div *ngIf="arrendatario" class="arrendatario-info">
+    <p><strong>ID:</strong> {{ arrendatario.id_arrendatario }}</p>
+    <p><strong>Nombres:</strong> {{ arrendatario.nombres }}</p>
+    <p><strong>Apellidos:</strong> {{ arrendatario.apellidos }}</p>
+    <p><strong>Correo:</strong> {{ arrendatario.correo }}</p>
+  </div>
+
+  <p *ngIf="errorMessage" class="error-message"> {{ errorMessage }}</p>
+  
+>>>>>>> Stashed changes

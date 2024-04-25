@@ -1,1 +1,10 @@
+<<<<<<< Updated upstream
 <p>delete-arrendatario works!</p>
+=======
+<div class="delete-container">
+    <input type="text" [(ngModel)]="searchId" (input)="onIdChange($any($event).target.value)" placeholder="Ingrese ID del arrendatario a eliminar" class="delete-input">
+    <button (click)="deleteArrendatario()" class="delete-button">Eliminar</button>
+  </div>
+  
+<p *ngIf="message" class="error-message">{{ message }}</p>
+>>>>>>> Stashed changes

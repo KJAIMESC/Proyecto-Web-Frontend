@@ -73,8 +73,6 @@ export class UpdatePropiedadComponent implements OnInit {
     }
   }
   
-  
-
   updatePropiedad() {
     if (this.propiedadForm.valid && this.currentPropiedadId) {
       const updatedPropiedad = {
@@ -96,24 +94,24 @@ export class UpdatePropiedadComponent implements OnInit {
           id_arrendador: this.propiedadForm.get('arrendadorId')?.value
         }
       };
-      console.log('Data to be sent:', updatedPropiedad);
+      console.log('Datos a enviar:', updatedPropiedad);
       this.propiedadService.updatePropiedad(updatedPropiedad)
         .then(response => {
-          console.log('Property updated:', response);
+          console.log('Propiedad actualizada:', response);
           this.isUpdatedSuccessfully = true;
-          this.message = 'Property updated successfully.';
+          this.message = 'Propiedad actualizada correctamente.';
         })
         .catch(error => {
-          console.error('Error updating property:', error);
+          console.error('Error al actualizar la propiedad:', error);
           if (error.response && error.response.data && error.response.data.message) {
             this.message = error.response.data.message;
           } else {
-            this.message = 'An error occurred while updating the property.';
+            this.message = 'Se produjo un error al actualizar la propiedad.';
           }
           this.isUpdatedSuccessfully = false;
         });
     } else {
-      this.message = 'Please check the form fields.';
+      this.message = 'Por favor, verifica los campos del formulario.';
     }
   }
 }
