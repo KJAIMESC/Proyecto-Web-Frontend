@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './save-propiedad.component.css'
 })
 export class SavePropiedadComponent {
+  message: string = '';
   propiedadForm = new FormGroup({
     nombre: new FormControl('', [Validators.required]),
     descripcion: new FormControl('', [Validators.required]),
@@ -26,6 +27,7 @@ export class SavePropiedadComponent {
     tipoIngresoId: new FormControl('', [Validators.required]),
     arrendadorId: new FormControl('', [Validators.required])
   });
+  
 
   constructor(private propiedadService: PropiedadService) {}
 
@@ -68,13 +70,13 @@ export class SavePropiedadComponent {
       this.propiedadService.savePropiedad(newPropiedad)
         .then(
           response => { 
-            alert('Propiedad guardada con éxito');
+            this.message = 'Propiedad guardada con éxito';
           },
           error => {
             console.error('Error al guardar la propiedad:', error);
+            this.message = error.response.data.message;
           }
         );
     }
   }
-  
 }

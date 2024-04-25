@@ -11,9 +11,12 @@ import { ArrendatarioService } from '../../../services/arrendatario.service';
   styleUrls: ['./delete-arrendatario.component.css']
 })
 export class DeleteArrendatarioComponent {
+<<<<<<< Updated upstream
+
+}
+=======
   searchId: string = '';
-  successMessage: string = '';
-  errorMessage: string = '';
+  message: string = '';
 
   constructor(private arrendatarioService: ArrendatarioService) {}
 
@@ -21,14 +24,13 @@ export class DeleteArrendatarioComponent {
     const id = Number(this.searchId);
     if (id) {
       this.arrendatarioService.deleteArrendatario(id).then(() => {
-        this.successMessage = `Arrendatario con ID ${id} eliminado exitosamente.`;
-        this.errorMessage = '';
+        this.message = `Arrendatario con ID ${id} eliminado exitosamente.`;
       }).catch((error) => {
         console.error(error);
-        this.errorMessage = `Error al eliminar el arrendatario: ${error.message}`;
+        this.message = error.response.data.message;
       });
     } else {
-      this.errorMessage = 'Por favor ingrese un ID válido.';
+      this.message = 'Por favor ingrese un ID válido.';
     }
   }
 
@@ -36,3 +38,4 @@ export class DeleteArrendatarioComponent {
     this.searchId = newId;
   }
 }
+>>>>>>> Stashed changes
