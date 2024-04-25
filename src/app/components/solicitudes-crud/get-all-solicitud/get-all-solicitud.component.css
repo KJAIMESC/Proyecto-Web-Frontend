@@ -1,0 +1,36 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+    background-color: #ffffff; /* fondo blanco */
+    text-align: center; /* centrar todo el contenido */
+  }
+  
+  h1 {
+    text-align: center; /* centrar el título */
+  }
+  
+  table {
+    margin: 0 auto; /* centrar la tabla */
+    border-collapse: collapse;
+    width: 80%; /* ancho de la tabla */
+  }
+  
+  th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: center; /* centrar el contenido de las celdas */
+  }
+  
+  th {
+    background-color: #65c6d5cc; /* fondo gris claro para las celdas de encabezado */
+  }
+  
+  button {
+    background-color: blue; /* color azul para los botones */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* espacio arriba del botón */
+  }
+  

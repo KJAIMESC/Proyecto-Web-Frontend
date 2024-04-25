@@ -1,0 +1,38 @@
+/* Estilos para el primer bloque */
+.search-container {
+    text-align: center; /* Centrar el contenido */
+  }
+  
+  .search-container h2 {
+    font-family: "Times New Roman", Times, serif; /* Fuente Times New Roman para h2 */
+  }
+  
+  .search-container input[type="text"] {
+    margin: 10px; /* Margen alrededor del input */
+    padding: 5px; /* Espaciado interno del input */
+  }
+  
+  .search-container button {
+    margin: 10px; /* Margen alrededor del botón */
+    padding: 8px 16px; /* Espaciado interno del botón */
+    background-color: blue; /* Color de fondo azul */
+    color: white; /* Color de texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Borde redondeado */
+    cursor: pointer; /* Cambio de cursor al pasar por encima */
+  }
+  
+  /* Estilos para el segundo bloque */
+  .details-container {
+    margin-top: 20px; /* Margen superior */
+    text-align: center; /* Centrar el contenido */
+  }
+  
+  .details-container h3 {
+    font-family: "Times New Roman", Times, serif; /* Fuente Times New Roman para h3 */
+  }
+  
+  .details-container p {
+    margin: 5px 0; /* Margen arriba y abajo */
+  }
+  
