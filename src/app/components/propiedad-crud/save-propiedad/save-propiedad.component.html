@@ -1,4 +1,7 @@
-<form [formGroup]="propiedadForm" (ngSubmit)="savePropiedad()" class="propiedad-form">
+
+<div *ngIf="message" class="error-message">{{ message }}</div>
+
+<form [formGroup]="propiedadForm" (ngSubmit)="savePropiedad()" class="propiedad-form" *ngIf="!message">
   <h2>Registra los Datos</h2> 
 
     <div class="form-group">

@@ -13,7 +13,7 @@ import { ArrendatarioService } from '../../../services/arrendatario.service';
 })
 export class GetArrendatarioComponent {
   arrendatario: Arrendatario | null = null;
-  errorMessage: string = '';
+  message: string = '';
   searchId: string = '';
 
   constructor(private arrendatarioService: ArrendatarioService) {}
@@ -23,14 +23,14 @@ export class GetArrendatarioComponent {
     if (id) {
       this.arrendatarioService.getArrendatarioById(id).then((data) => {
         this.arrendatario = data;
-        this.errorMessage = '';
+        this.message = '';
       }).catch((error) => {
         console.error(error);
         this.arrendatario = null;
-        this.errorMessage = 'Arrendatario no encontrado o error en la búsqueda.';
+        this.message = error.response.data.message;
       });
     } else {
-      this.errorMessage = 'Por favor ingrese un ID válido.';
+      this.message = 'Por favor ingrese un ID válido.';
     }
   }
 

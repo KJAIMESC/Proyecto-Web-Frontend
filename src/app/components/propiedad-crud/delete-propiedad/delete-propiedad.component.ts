@@ -12,8 +12,7 @@ import { PropiedadService } from '../../../services/propiedad.service';
 })
 export class DeletePropiedadComponent {
   searchId: string = '';
-  successMessage: string = '';
-  errorMessage: string = '';
+  message: string = '';
 
   constructor(private propiedadService: PropiedadService) {}
 
@@ -21,14 +20,13 @@ export class DeletePropiedadComponent {
     const id = Number(this.searchId);
     if (id) {
       this.propiedadService.deletePropiedad(id).then(() => {
-        this.successMessage = `Propiedad con ID ${id} eliminada exitosamente.`;
-        this.errorMessage = '';
+        this.message = `Propiedad con ID ${id} eliminada exitosamente.`;
       }).catch((error) => {
         console.error(error);
-        this.errorMessage = `Error al eliminar la propiedad: ${error.message}`;
+        this.message = error.response.data.message;
       });
     } else {
-      this.errorMessage = 'Por favor ingrese un ID válido.';
+      this.message = 'Por favor ingrese un ID válido.';
     }
   }
 

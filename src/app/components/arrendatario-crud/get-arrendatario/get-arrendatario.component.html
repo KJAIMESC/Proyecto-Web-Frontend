@@ -11,7 +11,5 @@
     <p><strong>Correo:</strong> {{ arrendatario.correo }}</p>
   </div>
   
-  <div *ngIf="errorMessage" class="error-message">
-    <p>Error: {{ errorMessage }}</p>
-  </div>
+  <p *ngIf="message" class="error-message">{{ message }}</p>
   

@@ -38,6 +38,7 @@ export class GetAllPropiedadComponent implements OnInit {
     this.propiedadService.deletePropiedad(id)
       .then(() => {
         console.log("Propiedad eliminada con éxito");
+        this.errorMessage = "Propiedad eliminada con éxito"
         this.propiedades = this.propiedades.filter(propiedad => propiedad.id_propiedad !== id);
       })
       .catch(error => {

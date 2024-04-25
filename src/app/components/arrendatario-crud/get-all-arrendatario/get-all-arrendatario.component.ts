@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class GetAllArrendatarioComponent implements OnInit {
   arrendatarios: Arrendatario[] = [];
+  message: string = '';
 
   constructor(private arrendatarioService: ArrendatarioService, private router: Router){}
 
@@ -22,11 +23,11 @@ export class GetAllArrendatarioComponent implements OnInit {
   }
 
   getAllArrendatario(){
-    // Externo
     this.arrendatarioService.getAllArrendatarios().then((post) => {
       this.arrendatarios = post;
     }).catch((error) => {
       console.error(error);
+      this.message = 'Error al cargar arrendatarios';
     });
   }
 
@@ -39,9 +40,11 @@ export class GetAllArrendatarioComponent implements OnInit {
       .then(() => {
         console.log("Arrendatario eliminado con éxito");
         this.arrendatarios = this.arrendatarios.filter(arrendatario => arrendatario.id_arrendatario !== id);
+        this.message = "Arrendatario eliminado con éxito";
       })
       .catch(error => {
         console.error("Error al eliminar el arrendatario", error);
+        this.message = error.response.data.message;
       });
   }
 }

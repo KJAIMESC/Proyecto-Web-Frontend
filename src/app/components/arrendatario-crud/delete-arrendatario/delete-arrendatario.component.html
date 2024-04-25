@@ -3,10 +3,4 @@
     <button (click)="deleteArrendatario()" class="delete-button">Eliminar</button>
   </div>
   
-  <div *ngIf="successMessage" class="success-message">
-    <p>{{ successMessage }}</p>
-  </div>
-  
-  <div *ngIf="errorMessage" class="error-message">
-    <p>{{ errorMessage }}</p>
-  </div>
+  <p *ngIf="message" class="error-message">{{ message }}</p>
