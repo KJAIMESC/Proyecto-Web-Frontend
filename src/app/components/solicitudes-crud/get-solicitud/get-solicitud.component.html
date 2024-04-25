@@ -1,8 +1,11 @@
 <div>
+  <div class="search-container">
     <h2>Buscar Solicitud</h2>
     <input type="text" [(ngModel)]="searchId" (ngModelChange)="onIdChange($event)" placeholder="Ingrese el ID de la solicitud">
     <button (click)="buscarSolicitud()">Buscar</button>
+  </div>
   
+  <div class="details-container">
     <div *ngIf="solicitud">
       <h3>Detalles de la Solicitud</h3>
       <p><strong>Fecha de Solicitud:</strong> {{ solicitud.fechaSolicitud | date:'medium' }}</p>
@@ -14,4 +17,5 @@
     </div>
     <p *ngIf="errorMessage">{{ errorMessage }}</p>
   </div>
+</div>
   

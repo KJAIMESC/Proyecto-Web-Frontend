@@ -1,9 +1,19 @@
-<form [formGroup]="deleteForm" (ngSubmit)="onDelete()">
+<div class="center-form">
+  <form [formGroup]="deleteForm" (ngSubmit)="onDelete()" class="blue-form">
     <h2>Eliminar Solicitud</h2>
-    <div>
-      <label for="id">ID de la Solicitud:</label>
-      <input type="text" formControlName="id" id="id">
+    <div class="center">
+      <label for="id" class="delete-container">ID de la Solicitud:</label>
+      <input type="text" formControlName="id" id="id" class="delete-input" placeholder="Ingrese ID de la solicitud a eliminar">
+      <button type="submit" [disabled]="!deleteForm.valid" class="delete-button">Eliminar Solicitud</button>
     </div>
-    <button type="submit" [disabled]="!deleteForm.valid">Eliminar Solicitud</button>
   </form>
+</div>
+
+<div *ngIf="successMessage" class="success-message">
+  <p>{{ successMessage }}</p>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
   
