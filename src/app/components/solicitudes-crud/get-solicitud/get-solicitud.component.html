@@ -14,6 +14,9 @@
       <p><strong>Fecha de Salida:</strong> {{ solicitud.fechaSalida | date:'medium' }}</p>
       <p><strong>Valor:</strong> {{ solicitud.valor | currency }}</p>
       <p><strong>Calificación:</strong> {{ solicitud.calificacion }}</p>
+      <p><strong>Estado Solicitud:</strong> {{ solicitud.estadoSolicitud?.estado }}</p>
+      <p><strong>Nombre Arrendatario:</strong> {{ solicitud.arrendatario?.nombres }}</p>
+      <p><strong>Nombre Propiedad:</strong> {{ solicitud.propiedad?.nombre }}</p>
     </div>
     <p *ngIf="errorMessage">{{ errorMessage }}</p>
   </div>

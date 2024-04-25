@@ -8,6 +8,9 @@
       <th>Fecha de Salida</th>
       <th>Valor</th>
       <th>Calificación</th>
+      <th>Estado Solicitud</th>
+      <th>Nombre Arrendatario</th>
+      <th>Nombre Propiedad</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +21,9 @@
       <td>{{ solicitud.fechaSalida | date:'medium' }}</td>
       <td>{{ solicitud.valor | currency }}</td>
       <td>{{ solicitud.calificacion }}</td>
+      <td>{{ solicitud.estadoSolicitud?.estado }}</td>
+      <td>{{ solicitud.arrendatario?.nombres }}</td>
+      <td>{{ solicitud.propiedad?.nombre }}</td>
     </tr>
   </tbody>
 </table>
