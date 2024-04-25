@@ -38,7 +38,23 @@ export class SaveSolicitudComponent {
         fechaSalida: formModel.fechaSalida ? new Date(formModel.fechaSalida) : null,
         valor: formModel.valor ? parseFloat(formModel.valor) : null,
         calificacion: formModel.calificacion ? parseFloat(formModel.calificacion) : null,
+        estadoSolicitud: {
+          id_EstadoSolicitud: formModel.id_EstadoSolicitud ? parseFloat(formModel.id_EstadoSolicitud):0,
+          estado: 'pendiente' 
+        },
+        arrendatario: {
+          id_arrendatario: formModel.id_arrendatario ? parseFloat(formModel.id_arrendatario):0,
+          nombres: 'pendiente' 
+
+        },
+        propiedad: {
+          id_propiedad: formModel.id_propiedad ? parseFloat(formModel.id_propiedad):0,
+          nombre: 'pendiente' 
+
+        }
+        
       };
+      
   
       // Asegúrate de que todos los campos requeridos estén presentes antes de enviar la solicitud
       if (this.isValidSolicitud(solicitud)) {

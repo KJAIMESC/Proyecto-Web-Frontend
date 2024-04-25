@@ -12,7 +12,7 @@
 
       <div class="form-group">
         <label>Hora de Solicitud:</label>
-        <input type="time" formControlName="horaSolicitud"  class="form-control" required>
+        <input type="datetime-local" formControlName="horaSolicitud"  class="form-control" required>
         <div *ngIf="solicitudForm.get('horaSolicitud')?.invalid && solicitudForm.get('horaSolicitud')?.touched" class="text-danger">
           Hora Solicitud requerida
         </div>
