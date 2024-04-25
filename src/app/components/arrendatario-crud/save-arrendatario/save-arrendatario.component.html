@@ -4,7 +4,7 @@
    
    <div class="form-group">
        <label for="nombres">Nombres</label>
-       <input type="text" class="form-control" id="nombres" formControlName="nombres" placeholder="Enrique" required>
+       <input type="text" class="form-control" id="nombres" formControlName="nombres" placeholder="Gabriel" required>
        <div *ngIf="arrendatarioForm.get('nombres')?.invalid && arrendatarioForm.get('nombres')?.touched" class="text-danger">
          Nombres requeridos
        </div>
@@ -12,7 +12,7 @@
  
      <div class="form-group">
        <label for="apellidos">Apellidos</label>
-       <input type="text" class="form-control" id="apellidos" formControlName="apellidos" placeholder="Iglesias" required>
+       <input type="text" class="form-control" id="apellidos" formControlName="apellidos" placeholder="Garcia" required>
        <div *ngIf="arrendatarioForm.get('apellidos')?.invalid && arrendatarioForm.get('apellidos')?.touched" class="text-danger">
          Apellidos requeridos
        </div>
@@ -20,7 +20,7 @@
  
      <div class="form-group">
        <label for="correo">Correo</label>
-       <input type="email" class="form-control" id="correo" formControlName="correo" placeholder="musiquitalinda@gmail.com" required>
+       <input type="email" class="form-control" id="correo" formControlName="correo" placeholder="libritoAmarillo@gmail.com" required>
        <div *ngIf="arrendatarioForm.get('correo')?.invalid && arrendatarioForm.get('correo')?.touched" class="text-danger">
          Correo electrónico inválido
        </div>
@@ -28,7 +28,7 @@
  
      <div class="form-group">
        <label for="telefono">Telefono</label>
-       <input type="tel" class="form-control" id="telefono" formControlName="telefono" placeholder="1234567" required>
+       <input type="tel" class="form-control" id="telefono" formControlName="telefono" placeholder="1290456" required>
        <div *ngIf="arrendatarioForm.get('telefono')?.invalid && arrendatarioForm.get('telefono')?.touched" class="text-danger">
          Teléfono requerido
        </div>
