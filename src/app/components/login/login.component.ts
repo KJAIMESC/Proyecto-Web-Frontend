@@ -31,7 +31,7 @@ export class LoginComponent {
         next: (response: Login) => {
           this.login = response;
           console.log('Token recibido:', this.login.token);
-          console.log('Tipo recibido:', this.login.tipo);
+          console.log('Tipo recibido:', this.login.type);
           // Aquí puedes guardar el token en el localStorage, sessionStorage o manejarlo como necesites
         },
         error: (error) => {

@@ -12,8 +12,8 @@ export class LoginService {
 
   constructor() { }
 
-  getToken(username: string, password: string): Observable<Login> {
-    const body = { username, password };
+  getToken(correo: string, contrasena: string): Observable<Login> {
+    const body = { correo, contrasena};
     return from(axios.post<Login>(this.apiUrl, body).then(response => response.data))
   }
 }
