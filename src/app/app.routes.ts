@@ -24,6 +24,8 @@ import { GetSolicitudComponent } from './components/solicitudes-crud/get-solicit
 import { GetAllSolicitudComponent } from './components/solicitudes-crud/get-all-solicitud/get-all-solicitud.component';
 import { SaveSolicitudComponent } from './components/solicitudes-crud/save-solicitud/save-solicitud.component';
 import { DeleteSolicitudComponent } from './components/solicitudes-crud/delete-solicitud/delete-solicitud.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 export const routes: Routes = [
     { path: '', component: MainComponent },
@@ -69,6 +71,18 @@ export const routes: Routes = [
         { path: 'get-all', component: GetAllSolicitudComponent},
         { path: 'create', component: SaveSolicitudComponent },
         { path: 'delete', component: DeleteSolicitudComponent },
+      ]
+    },
+    {
+      path: 'login',
+      component: LoginComponent,
+      children: [
+      ]
+    },
+    {
+      path: 'register',
+      component: RegisterComponent,
+      children: [
       ]
     }
 ];
