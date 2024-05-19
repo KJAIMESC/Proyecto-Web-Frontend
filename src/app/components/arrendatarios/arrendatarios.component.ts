@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service'; 
 
 @Component({
   selector: 'app-arrendatarios',
@@ -8,9 +9,13 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
   templateUrl: './arrendatarios.component.html',
   styleUrl: './arrendatarios.component.css'
 })
-export class ArrendatariosComponent {
-  constructor(private router: Router, private route: ActivatedRoute){}
+export class ArrendatariosComponent implements OnInit{
+  nombreArrendatario : string = '';
+  constructor(private router: Router, private route: ActivatedRoute, private cookieService: CookieService){}
 
+  ngOnInit(): void {
+      this.nombreArrendatario = this.cookieService.get('nombres')
+  }
   getArrendatario() {
     this.router.navigate(['get'], { relativeTo: this.route})
   }

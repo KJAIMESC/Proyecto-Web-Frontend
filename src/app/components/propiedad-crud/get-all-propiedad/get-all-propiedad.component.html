@@ -29,13 +29,25 @@
 
 <div *ngIf="solicitudes.length > 0">
   <h3>Solicitudes</h3>
-  <ul class="solicitud-list">
-    <li *ngFor="let solicitud of solicitudes" class="solicitud-item">
-      <div class="solicitud-info">
-        <p><strong>ID Solicitud:</strong> {{ solicitud.id_solicitud }}</p>
-        <p><strong>Fecha:</strong> {{ solicitud.fechaSolicitud }}</p>
-        <p><strong>Estado:</strong> {{ solicitud.estadoSolicitud }}</p>
-      </div>
-    </li>
-  </ul>
+  <table class="solicitud-table">
+    <thead>
+      <tr>
+        <th>ID Solicitud</th>
+        <th>Fecha</th>
+        <th>Fecha Llegada</th>
+        <th>Propiedad</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let solicitud of solicitudes" class="solicitud-item">
+        <td>{{ solicitud.id_solicitud }}</td>
+        <td>{{ solicitud.fechaSolicitud }}</td>
+        <td>{{ solicitud.fechaLlegada }}</td>
+        <td>{{ solicitud.propiedad }}</td>
+        <td>{{ solicitud.valor }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
+
