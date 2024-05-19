@@ -20,30 +20,6 @@
       </div>
 
       <div class="form-group">
-        <label>Valor:</label>
-        <input type="number" formControlName="valor"  class="form-control" required>
-        <div *ngIf="solicitudForm.get('valor')?.invalid && solicitudForm.get('valor')?.touched" class="text-danger">
-          Valor requerido
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>ID del Estado de Solicitud:</label>
-        <input type="number" formControlName="id_EstadoSolicitud"  class="form-control" required>
-        <div *ngIf="solicitudForm.get('id_EstadoSolicitud')?.invalid && solicitudForm.get('id_EstadoSolicitud')?.touched" class="text-danger">
-          ID Solicitud requerido
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>ID del Arrendatario:</label>
-        <input type="number" formControlName="id_arrendatario"  class="form-control" required>
-        <div *ngIf="solicitudForm.get('id_arrendatario')?.invalid && solicitudForm.get('id_arrendatario')?.touched" class="text-danger">
-          ID  Arrendatario requerido
-        </div>
-      </div>
-
-      <div class="form-group">
         <label>ID de la Propiedad:</label>
         <input type="number" formControlName="id_propiedad"  class="form-control" required>
         <div *ngIf="solicitudForm.get('id_propiedad')?.invalid && solicitudForm.get('id_propiedad')?.touched" class="text-danger">

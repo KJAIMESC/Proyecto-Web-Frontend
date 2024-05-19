@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SolicitudService } from '../../../services/solicitud.service';
 import { Solicitud } from '../../../models/solicitud';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import moment, { Moment } from 'moment-timezone'
 @Component({
   selector: 'app-save-solicitud',
@@ -16,34 +18,23 @@ export class SaveSolicitudComponent {
   solicitudForm = new FormGroup({
     fechaLlegada: new FormControl('', [Validators.required]),
     fechaSalida: new FormControl('', [Validators.required]),
-    valor: new FormControl('', [Validators.required]),
-    id_EstadoSolicitud: new FormControl('', [Validators.required]),
-    id_arrendatario: new FormControl('', [Validators.required]),
     id_propiedad: new FormControl('', [Validators.required])
   });
 
-  constructor(private solicitudService: SolicitudService) { }
+  constructor(
+    private solicitudService: SolicitudService,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
   onSubmit() {
     if (this.solicitudForm.valid) {
       const formModel = this.solicitudForm.value;
   
       const solicitud: Solicitud = {
-        fechaSolicitud: moment.utc().subtract(5, 'hours').toDate(),
-        horaSolicitud: moment.utc().subtract(5, 'hours').toDate(),
+       
         fechaLlegada: formModel.fechaLlegada ? new Date(formModel.fechaLlegada) : null,
         fechaSalida: formModel.fechaSalida ? new Date(formModel.fechaSalida) : null,
-        valor: formModel.valor ? parseFloat(formModel.valor) : null,
-        calificacion: null,
-        estadoSolicitud: {
-          id_EstadoSolicitud: formModel.id_EstadoSolicitud ? parseFloat(formModel.id_EstadoSolicitud):0,
-          estado: 'pendiente' 
-        },
-        arrendatario: {
-          id_arrendatario: formModel.id_arrendatario ? parseFloat(formModel.id_arrendatario):0,
-          nombres: 'pendiente' 
-
-        },
         propiedad: {
           id_propiedad: formModel.id_propiedad ? parseFloat(formModel.id_propiedad):0,
           nombre: 'pendiente' 
@@ -53,7 +44,9 @@ export class SaveSolicitudComponent {
       };
       
       if (this.isValidSolicitud(solicitud)) {
-        this.solicitudService.saveSolicitud(solicitud).then(() => {
+      const token = this.cookieService.get('token');
+      const tokenType = this.cookieService.get('tokenType');
+        this.solicitudService.saveSolicitud(solicitud, token, tokenType).then(() => {
           this.message = 'Solicitud guardada con éxito';
         }).catch(error => {
           console.error('Error guardando la solicitud:', error);

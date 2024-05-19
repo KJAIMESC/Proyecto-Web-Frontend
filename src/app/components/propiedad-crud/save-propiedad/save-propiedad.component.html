@@ -78,13 +78,5 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="arrendadorId">Arrendador ID</label>
-      <input type="number" class="form-control" id="arrendadorId" formControlName="arrendadorId" required>
-      <div *ngIf="propiedadForm.get('arrendadorId')?.invalid && propiedadForm.get('arrendadorId')?.touched" class="text-danger">
-        ID de arrendador requerido
-      </div>
-    </div>
-
     <button type="submit" class="form-submit-button" [disabled]="propiedadForm.invalid">Guardar</button>
 </form>

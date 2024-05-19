@@ -45,8 +45,15 @@ export class PropiedadService {
     });
   }
 
-  savePropiedad(propiedad: Propiedad): Promise<Propiedad> {
-    return axios.post<Propiedad>(this.apiUrl, propiedad).then(response => response.data);
+  savePropiedad(propiedad: Propiedad, token: string, tokenType: string): Promise<Propiedad> {
+    return axios.post<Propiedad>(this.apiUrl+"/create", propiedad, {
+      headers: {
+        'Authorization': `${tokenType} ${token}`
+      }
+    }).then(response => response.data).catch(error => {
+      console.error('Error al guardar la propiedad', error);
+      throw error;
+    });
   }
 
   updatePropiedad(propiedad: Propiedad): Promise<Propiedad> {
