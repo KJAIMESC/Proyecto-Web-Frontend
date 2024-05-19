@@ -1,5 +1,6 @@
 <h1>Listado de Solicitudes</h1>
 <p *ngIf="message" class="error-message">{{ message }}</p>
+
 <table>
   <thead>
     <tr>
@@ -13,7 +14,7 @@
       <th>Estado Solicitud</th>
       <th>Nombre Arrendatario</th>
       <th>Nombre Propiedad</th>
-      <th></th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -24,12 +25,19 @@
       <td>{{ solicitud.fechaLlegada | date:'medium' }}</td>
       <td>{{ solicitud.fechaSalida | date:'medium' }}</td>
       <td>{{ solicitud.valor | currency }}</td>
-      <td>{{ solicitud.calificacion }}</td>
+      <td>
+      <p>{{solicitud.calificacion}}</p>
+        <input type="number" min="1" max="5" #calificacionInput>
+      </td>
       <td>{{ solicitud.estadoSolicitud?.estado }}</td>
       <td>{{ solicitud.arrendatario?.nombres }}</td>
       <td>{{ solicitud.propiedad?.nombre }}</td>
-      <td><button class="action-btn delete-btn" (click)="deleteSolicitud(solicitud.id_solicitud || 0)"><strong>Eliminar</strong></button></td>
+      <td>
+        <button class="action-btn delete-btn" (click)="deleteSolicitud(solicitud.id_solicitud || 0)"><strong>Eliminar</strong></button>
+        <button class="action-btn delete-btn" (click)="calificarById(solicitud.id_solicitud, solicitud.calificacion || 0)"><strong>Calificar</strong></button>
+
+
+      </td>
     </tr>
   </tbody>
 </table>
-
