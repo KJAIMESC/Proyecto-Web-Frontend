@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Solicitud } from '../../../models/solicitud';
 import { SolicitudService } from '../../../services/solicitud.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-get-all-solicitudes',
@@ -15,21 +16,28 @@ export class GetAllSolicitudComponent implements OnInit {
   solicitudes: Solicitud[] = [];
   message: string = '';
 
-  constructor(private solicitudService: SolicitudService) {}
+  constructor(private solicitudService: SolicitudService, private cookieService: CookieService) {}
 
   ngOnInit(): void {
     this.loadSolicitudes();
   }
 
   loadSolicitudes() {
-    this.solicitudService.getAllSolicitudes()
-      .then(solicitud => {
-        this.solicitudes = solicitud;
-      })
-      .catch(error => {
+    const token = this.cookieService.get('token');
+    const tokenType = this.cookieService.get('tokenType');
+
+    if(token && tokenType) {
+      this.solicitudService.getAllSolicitudes(token, tokenType).then(data => {
+        this.solicitudes = data;
+      }).catch(error => {
         console.error('Error al cargar las solicitudes:', error);
+        this.message = 'Error al cargar solicitudes';
       });
-  }
+    } else {
+      this.message = 'No se encontraron las cookies de autenticación.';
+    }
+  }  
+
   deleteSolicitud(id: number) {
     this.solicitudService.deleteSolicitud(id)
       .then(() => {
@@ -43,3 +51,4 @@ export class GetAllSolicitudComponent implements OnInit {
       });
   }
 }
+

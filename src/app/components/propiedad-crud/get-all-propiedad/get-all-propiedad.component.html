@@ -7,7 +7,7 @@
         <p><strong>ID:</strong> {{ propiedad.id_propiedad }}</p>
         <p><strong>Nombre:</strong> {{ propiedad.nombre }}</p>
         <p><strong>Descripción:</strong> {{ propiedad.descripcion }}</p>
-        <p><strong>Cantidad de Habitaciones:</strong> {{ propiedad.cantidadHabitaciones}}</p>
+        <p><strong>Cantidad de Habitaciones:</strong> {{ propiedad.cantidadHabitaciones }}</p>
         <p><strong>Cantidad de Baños:</strong> {{ propiedad.cantidadBanos }}</p>
         <p><strong>Valor por Noche:</strong> {{ propiedad.valorNoche }}</p>
         <p><strong>Departamento:</strong> {{ propiedad.departamento }}</p>
@@ -15,12 +15,26 @@
         <p><strong>Permitido Mascotas:</strong> {{ propiedad.permitido_mascotas ? 'Sí' : 'No' }}</p>
         <p><strong>Piscina:</strong> {{ propiedad.piscina ? 'Sí' : 'No' }}</p>
         <p><strong>Activado:</strong> {{ propiedad.activado ? 'Sí' : 'No' }}</p>
-        <p><strong>Tipo de Ingreso ID:</strong> {{ propiedad.tipoIngreso?.id_tipoIngreso}}<p>
+        <p><strong>Tipo de Ingreso ID:</strong> {{ propiedad.tipoIngreso?.id_tipoIngreso }}</p>
         <p><strong>Arrendador ID:</strong> {{ propiedad.arrendador?.id_arrendador }}</p>
       </div>
       <div class="button-container">
         <button class="action-btn update-btn" (click)="updatePropiedad(propiedad.id_propiedad || 0)"><strong>Actualizar</strong></button> 
         <button class="action-btn delete-btn" (click)="deletePropiedad(propiedad.id_propiedad || 0)"><strong>Eliminar</strong></button>
+        <button class="action-btn view-btn" (click)="getAllSolicitudes(propiedad.id_propiedad || 0)"><strong>Ver solicitudes</strong></button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="solicitudes.length > 0">
+  <h3>Solicitudes</h3>
+  <ul class="solicitud-list">
+    <li *ngFor="let solicitud of solicitudes" class="solicitud-item">
+      <div class="solicitud-info">
+        <p><strong>ID Solicitud:</strong> {{ solicitud.id_solicitud }}</p>
+        <p><strong>Fecha:</strong> {{ solicitud.fechaSolicitud }}</p>
+        <p><strong>Estado:</strong> {{ solicitud.estadoSolicitud }}</p>
       </div>
     </li>
   </ul>

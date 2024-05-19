@@ -20,15 +20,20 @@ export class PropiedadService {
     });
   }
 
-  getAllPropiedades(): Promise<Propiedad[]> {
-    return axios.get<Propiedad[]>(this.apiUrl).then(response => {
-      console.log("Todas las propiedades recibidas:", response.data);  
+  getAllPropiedades(token: string, tokenType: string): Promise<Propiedad[]> {
+    return axios.get<Propiedad[]>(`${this.apiUrl}/user`, {
+      headers: {
+        'Authorization': `${tokenType} ${token}`
+      }
+    }).then(response => {
+      console.log("Todas las propiedades recibidas:", response.data);
       return response.data;
     }).catch(error => {
       console.error("Error al obtener todas las propiedades", error);
       throw error;
     });
   }
+
 
   deletePropiedad(id: number): Promise<void> {
     return axios.delete(`${this.apiUrl}/${id}`).then(response => {

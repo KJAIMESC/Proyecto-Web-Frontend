@@ -16,4 +16,5 @@ export class LoginService {
     const body = { correo, contrasena};
     return from(axios.post<Login>(this.apiUrl, body).then(response => response.data))
   }
+
 }

@@ -34,6 +34,9 @@ export class LoginComponent {
           this.login = response;
           console.log('Token recibido:', this.login.token);
           console.log('Tipo recibido:', this.login.type);
+          console.log('Tipo de usuario', this.login.accType);
+          console.log('Nombre usuario', this.login.nombres);
+    
 
           if(this.login.token){
             this.cookieService.set('token', this.login.token);
@@ -41,6 +44,19 @@ export class LoginComponent {
           if(this.login.type){
             this.cookieService.set('tokenType', this.login.type);
           }
+          if(this.login.nombres){
+            this.cookieService.set('nombres', this.login.nombres)
+          }
+          if(this.login.accType){
+            this.cookieService.set('accType', this.login.accType)
+            if(this.login.accType == "Arrendador"){
+              this.openArrendador();
+            }else if(this.login.accType == "Arrendatario"){
+              this.openArrendatario();
+            }
+          
+          }
+
 
         },
         error: (error) => {
@@ -61,6 +77,13 @@ export class LoginComponent {
 
   redirectToRegister(){
     this.router.navigateByUrl('/register')
+  }
+
+  openArrendador() {
+    this.router.navigate(['arrendadores'])
+  }
+  openArrendatario() {
+    this.router.navigate(['arrendatarios'])
   }
 
 }

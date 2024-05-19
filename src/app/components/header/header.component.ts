@@ -23,11 +23,9 @@ export class HeaderComponent {
   openSolicitud() {
     this.router.navigate(['solicitudes'])
   }
-
   openSesion(){
     this.router.navigate(['login'])
   }
-
   openRegistro(){
     this.router.navigate(['register'])
   }
