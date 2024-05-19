@@ -65,15 +65,26 @@ export class SolicitudService {
       });
   }
 
-  calificarSolicitud(id: number, calificacion: number): Promise<any> {
-    const url = `${this.apiUrl}/updateCalificacion/${id}`; 
-    const body = calificacion; 
+  calificarSolicitud(id: number | null | undefined, calificacion: number | null | undefined): Promise<any> {
+    if (id == null || calificacion == null) {
+      throw new Error('ID y calificación son obligatorios');
+    }
+    
+    const url = `${this.apiUrl}/updateCalificacion/${id}`;
+    console.log('ID de solicitud:', id);
+    console.log('Calificación:', calificacion);
 
-    return axios.post(url, body)
-      .then(response => response.data)
-      .catch(error => {
-        console.error('Error al calificar la solicitud', error);
-        throw error;
-      });
+    return axios.put(url, calificacion.toString(), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.data)
+    .catch(error => {
+      console.error('Error al calificar la solicitud', error);
+      throw error;
+    });
   }
+
+  
 }
