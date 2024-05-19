@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
   standalone: true,
   imports: [CommonModule]
 })
+
 export class GetAllSolicitudComponent implements OnInit {
   solicitudes: Solicitud[] = [];
   message: string = '';
@@ -20,6 +21,17 @@ export class GetAllSolicitudComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadSolicitudes();
+  }
+
+  calificarById(id: number, calificacion: number) {
+    this.solicitudService.calificarSolicitud(id, calificacion)
+      .then(response => {
+        console.log('Solicitud calificada con éxito:', response);
+      })
+      .catch(error => {
+        console.error('Error al calificar la solicitud:', error);
+        this.message = 'Error al calificar la solicitud';
+      });
   }
 
   loadSolicitudes() {

@@ -64,4 +64,16 @@ export class SolicitudService {
         throw error;
       });
   }
+
+  calificarSolicitud(id: number, calificacion: number): Promise<any> {
+    const url = `${this.apiUrl}/updateCalificacion/${id}`; 
+    const body = calificacion; 
+
+    return axios.post(url, body)
+      .then(response => response.data)
+      .catch(error => {
+        console.error('Error al calificar la solicitud', error);
+        throw error;
+      });
+  }
 }

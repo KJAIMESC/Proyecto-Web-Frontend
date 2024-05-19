@@ -29,6 +29,7 @@
       <td>{{ solicitud.arrendatario?.nombres }}</td>
       <td>{{ solicitud.propiedad?.nombre }}</td>
       <td><button class="action-btn delete-btn" (click)="deleteSolicitud(solicitud.id_solicitud || 0)"><strong>Eliminar</strong></button></td>
+      <td><button class="action-btn delete-btn" (click)="calificarById(solicitud.id_solicitud || 0, 5)"><strong>Calificar</strong></button></td>
     </tr>
   </tbody>
 </table>

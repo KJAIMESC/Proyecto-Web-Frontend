@@ -33,18 +33,20 @@
     <thead>
       <tr>
         <th>ID Solicitud</th>
-        <th>Fecha</th>
+        <th>Fecha Salida</th>
         <th>Fecha Llegada</th>
-        <th>Propiedad</th>
+        <th>Hora solicitud</th>
+        <th>Calificacion</th>
         <th>Valor</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let solicitud of solicitudes" class="solicitud-item">
         <td>{{ solicitud.id_solicitud }}</td>
-        <td>{{ solicitud.fechaSolicitud }}</td>
+        <td>{{ solicitud.fechaSalida}}</td>
         <td>{{ solicitud.fechaLlegada }}</td>
-        <td>{{ solicitud.propiedad }}</td>
+        <td>{{ solicitud.horaSolicitud }}</td>
+        <td>{{ solicitud.calificacion}}</td>
         <td>{{ solicitud.valor }}</td>
       </tr>
     </tbody>
