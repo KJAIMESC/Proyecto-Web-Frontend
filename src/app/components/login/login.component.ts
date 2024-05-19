@@ -36,6 +36,7 @@ export class LoginComponent {
           console.log('Tipo recibido:', this.login.type);
           console.log('Tipo de usuario', this.login.accType);
           console.log('Nombre usuario', this.login.nombres);
+          console.log('id', this.login.id);
     
 
           if(this.login.token){
@@ -47,6 +48,9 @@ export class LoginComponent {
           if(this.login.nombres){
             this.cookieService.set('nombres', this.login.nombres)
           }
+          if (this.login.id) {
+            this.cookieService.set('id', this.login.id.toString());
+          }          
           if(this.login.accType){
             this.cookieService.set('accType', this.login.accType)
             if(this.login.accType == "Arrendador"){

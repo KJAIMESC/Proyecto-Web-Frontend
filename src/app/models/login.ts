@@ -4,5 +4,7 @@ export class Login {
         public type?: string | null,
         public accType?: string | null,
         public nombres?: string | null,
+        public id?: number | null
+
     ){}
 }

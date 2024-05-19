@@ -26,17 +26,32 @@ export class ArrendatarioService {
     });
   }
 
-  deleteArrendatario(id: number): Promise<void> {
-    return axios.delete(`${this.apiUrl}/${id}`).then(response => {
-      console.log("Arrendador eliminado con éxito");
+  deleteArrendatario(token: string, tokenType: string): Promise<void> {
+    return axios.delete(`${this.apiUrl}/delete`, {
+      headers: {
+        'Authorization': `${tokenType} ${token}`
+      }
+    }).then(response => {
+      console.log("Arrendatario eliminado con éxito");
       return response.data;
     }).catch(error => {
-      console.error("Error al eliminar el arrendador", error);
+      console.error("Error al eliminar el arrendatario", error);
       throw error;
     });
   }  
 
   saveArrendatario(arrendador: Arrendatario): Promise<Arrendatario> {
     return axios.post<Arrendatario>(this.apiUrl, arrendador).then(response => response.data);
+  }
+
+  updateArrendatario(arrendatario: Arrendatario, token: string, tokenType: string): Promise<Arrendatario> {
+    return axios.put<Arrendatario>(`${this.apiUrl}/update`, arrendatario, {
+      headers: {
+        'Authorization': `${tokenType} ${token}`
+      }
+    }).then(response => response.data).catch(error => {
+      console.error('Error al actualizar los datos del arrendatario', error);
+      throw error;
+    });
   }
 }
