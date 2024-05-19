@@ -28,6 +28,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 export const routes: Routes = [
+    { path: 'login', component: LoginComponent }, 
     { path: '', component: MainComponent },
     { path: 'propiedades', component: PropiedadesComponent,
         children: [
@@ -71,12 +72,6 @@ export const routes: Routes = [
         { path: 'get-all', component: GetAllSolicitudComponent},
         { path: 'create', component: SaveSolicitudComponent },
         { path: 'delete', component: DeleteSolicitudComponent },
-      ]
-    },
-    {
-      path: 'login',
-      component: LoginComponent,
-      children: [
       ]
     },
     {

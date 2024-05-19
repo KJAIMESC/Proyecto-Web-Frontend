@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Login } from '../../models/login';
 import { LoginService } from '../../services/login.service';
+import { CookieService } from 'ngx-cookie-service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,7 @@ export class LoginComponent {
   login: Login | null = null;
   errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private cookieService: CookieService, private router: Router) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -32,7 +34,14 @@ export class LoginComponent {
           this.login = response;
           console.log('Token recibido:', this.login.token);
           console.log('Tipo recibido:', this.login.type);
-          // Aquí puedes guardar el token en el localStorage, sessionStorage o manejarlo como necesites
+
+          if(this.login.token){
+            this.cookieService.set('token', this.login.token);
+          }
+          if(this.login.type){
+            this.cookieService.set('tokenType', this.login.type);
+          }
+
         },
         error: (error) => {
           console.error('Error al obtener el token:', error);
@@ -49,4 +58,9 @@ export class LoginComponent {
   get password() {
     return this.loginForm.get('password');
   }
+
+  redirectToRegister(){
+    this.router.navigateByUrl('/register')
+  }
+
 }

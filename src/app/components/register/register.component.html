@@ -1,1 +1,12 @@
-<p>register works!</p>
+<div>
+    <button (click)="toggleComponent('arrendador')">Arrendador</button>
+    <button (click)="toggleComponent('arrendatario')">Arrendatario</button>
+  </div>
+  
+  <div *ngIf="showArrendador">
+    <app-save-arrendador></app-save-arrendador>
+  </div>
+  <div *ngIf="!showArrendador">
+    <app-save-arrendatario></app-save-arrendatario>
+  </div>
+  

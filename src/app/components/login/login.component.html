@@ -17,6 +17,7 @@
     </div>
   
     <button type="submit" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+    <button type="submit" (click)="redirectToRegister()">Registrarse</button>
   
     <div *ngIf="errorMessage">
       {{ errorMessage }}
