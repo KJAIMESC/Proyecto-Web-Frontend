@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PropiedadService } from '../../../services/propiedad.service';
 import { Propiedad } from '../../../models/propiedad';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-save-propiedad',
@@ -24,19 +27,21 @@ export class SavePropiedadComponent {
     piscina: new FormControl(false),
     valorNoche: new FormControl('', [Validators.required]),
     activado: new FormControl(false),
-    tipoIngresoId: new FormControl('', [Validators.required]),
-    arrendadorId: new FormControl('', [Validators.required])
+    tipoIngresoId: new FormControl('', [Validators.required])
   });
 
-  constructor(private propiedadService: PropiedadService) {}
+  constructor(
+    private propiedadService: PropiedadService,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
   savePropiedad() {
     if (this.propiedadForm.valid) {
       const formValue = this.propiedadForm.value;
       const newPropiedad: Propiedad = {
         cantidadBanos: Number(formValue.cantidadBanos), 
-        tipoIngreso: { id_tipoIngreso: Number(formValue.tipoIngresoId) },
-        arrendador: { id_arrendador: Number(formValue.arrendadorId) }
+        tipoIngreso: { id_tipoIngreso: Number(formValue.tipoIngresoId) }
       };
       if (formValue.nombre) {
         newPropiedad.nombre = formValue.nombre;
@@ -65,18 +70,26 @@ export class SavePropiedadComponent {
       if (formValue.activado) {
         newPropiedad.activado = formValue.activado;
       }
-      console.log('Data to be sent:', newPropiedad);
-      this.propiedadService.savePropiedad(newPropiedad)
-        .then(
-          response => { 
-            this.message = 'Propiedad guardada con éxito.';
-          },
-          error => {
-            console.error('Error al guardar la propiedad:', error);
-            this.message = error.response.data.message;
-          }
-        );
+      // Obtener el token de la cookie
+      const token = this.cookieService.get('token');
+      const tokenType = this.cookieService.get('tokenType');
+
+      if (token && tokenType) {
+        console.log('Data to be sent:', newPropiedad);
+        this.propiedadService.savePropiedad(newPropiedad, token, tokenType)
+          .then(
+            response => { 
+              this.message = 'Propiedad guardada con éxito.';
+            },
+            error => {
+              console.error('Error al guardar la propiedad:', error);
+              this.message = error.response.data.message;
+            }
+          );
+      } else {
+        this.message = 'No se encontró la cookie de autenticación';
+      }
+    }
     }
   }
   
-}

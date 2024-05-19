@@ -45,13 +45,15 @@ export class SolicitudService {
       });
   }
 
-  saveSolicitud(solicitud: Solicitud): Promise<Solicitud> {
-    return axios.post<Solicitud>(this.apiUrl, solicitud)
-      .then(response => response.data)
-      .catch(error => {
-        console.error("Error al guardar la solicitud", error);
-        throw error;
-      });
+  saveSolicitud(solicitud: Solicitud, token: string, tokenType: string): Promise<Solicitud> {
+    return axios.post<Solicitud>(this.apiUrl+"/create", solicitud, {
+      headers: {
+        'Authorization': `${tokenType} ${token}`
+      }
+    }).then(response => response.data).catch(error => {
+      console.error('Error al guardar la solicitud', error);
+      throw error;
+    });
   }
 
   deleteSolicitud(id: number): Promise<void> {
