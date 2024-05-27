@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SolicitudService } from '../../../services/solicitud.service';
 import { Solicitud } from '../../../models/solicitud';
+import { PropiedadService } from '../../../services/propiedad.service';
+import { Propiedad } from '../../../models/propiedad';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import moment, { Moment } from 'moment-timezone'
+
 @Component({
   selector: 'app-save-solicitud',
   templateUrl: './save-solicitud.component.html',
@@ -21,11 +24,37 @@ export class SaveSolicitudComponent {
     id_propiedad: new FormControl('', [Validators.required])
   });
 
+  propiedades: any[] = []; // Para almacenar las propiedades disponibles
+
   constructor(
     private solicitudService: SolicitudService,
+    private propiedadService: PropiedadService,
     private router: Router,
     private cookieService: CookieService
   ) {}
+
+  ngOnInit() {
+    this.getPropiedades();
+  }
+
+  getPropiedades() {
+    const token = this.cookieService.get('token');
+    const tokenType = this.cookieService.get('tokenType');
+    console.log('Obteniendo propiedades con token:', token, 'y tipo:', tokenType);
+    this.propiedadService.getTodasPropiedades(token, tokenType).then(
+      (data: Propiedad[]) => {
+        if (data.length > 0) {
+          this.propiedades = data;
+          console.log('Propiedades cargadas:', this.propiedades);
+        } else {
+          console.warn('No se encontraron propiedades.');
+        }
+      },
+      (error) => {
+        console.error('Error obteniendo propiedades:', error);
+      }
+    );
+  }
 
   onSubmit() {
     if (this.solicitudForm.valid) {

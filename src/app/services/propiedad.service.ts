@@ -60,5 +60,20 @@ export class PropiedadService {
     return axios.put<Propiedad>(this.apiUrl, propiedad).then(response => response.data);
   }
 
-  
+  getTodasPropiedades(token: string, tokenType: string): Promise<Propiedad[]> {
+    console.log('Enviando solicitud para obtener todas las propiedades con token:', token, 'y tipo:', tokenType);
+    return axios.get<Propiedad[]>(this.apiUrl, {
+      headers: {
+        'Authorization': `${tokenType} ${token}`
+      }
+    }).then(response => {
+      console.log("Todas las propiedades recibidas:", response.data);
+      return response.data;
+    }).catch(error => {
+      console.error("Error al obtener todas las propiedades", error);
+      throw error;
+    });
+  }
 }
+
+  

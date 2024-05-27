@@ -1,31 +1,33 @@
 <p *ngIf="message" class="error-message">{{ message }}</p>
 
-  <form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()" class="solicitud-form" *ngIf="!message">
-      <h2>Crear Solicitud</h2>
+<form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()" class="solicitud-form" *ngIf="!message">
+  <h2>Crear Solicitud</h2>
 
-      <div class="form-group">
-        <label>Fecha de Llegada:</label>
-        <input type="datetime-local" formControlName="fechaLlegada"  class="form-control" required>
-        <div *ngIf="solicitudForm.get('fechaLlegada')?.invalid && solicitudForm.get('fechaLlegada')?.touched" class="text-danger">
-         Fecha Llegada requerida
-        </div>
-      </div>
+  <div class="form-group">
+    <label>Fecha de Llegada:</label>
+    <input type="datetime-local" formControlName="fechaLlegada" class="form-control" required>
+    <div *ngIf="solicitudForm.get('fechaLlegada')?.invalid && solicitudForm.get('fechaLlegada')?.touched" class="text-danger">
+      Fecha Llegada requerida
+    </div>
+  </div>
 
-      <div class="form-group">
-        <label>Fecha de Salida:</label>
-        <input type="datetime-local" formControlName="fechaSalida"  class="form-control" required>
-        <div *ngIf="solicitudForm.get('fechaSalida')?.invalid && solicitudForm.get('fechaSalida')?.touched" class="text-danger">
-          Fecha Salida requerida
-        </div>
-      </div>
+  <div class="form-group">
+    <label>Fecha de Salida:</label>
+    <input type="datetime-local" formControlName="fechaSalida" class="form-control" required>
+    <div *ngIf="solicitudForm.get('fechaSalida')?.invalid && solicitudForm.get('fechaSalida')?.touched" class="text-danger">
+      Fecha Salida requerida
+    </div>
+  </div>
 
-      <div class="form-group">
-        <label>ID de la Propiedad:</label>
-        <input type="number" formControlName="id_propiedad"  class="form-control" required>
-        <div *ngIf="solicitudForm.get('id_propiedad')?.invalid && solicitudForm.get('id_propiedad')?.touched" class="text-danger">
-          ID Propiedad requerido
-        </div>
-      </div>
+  <div class="form-group">
+    <label>Nombre de la Propiedad:</label>
+    <select formControlName="id_propiedad" class="form-control" required>
+      <option *ngFor="let propiedad of propiedades" [value]="propiedad.id">{{ propiedad.nombre }}</option>
+    </select>
+    <div *ngIf="solicitudForm.get('id_propiedad')?.invalid && solicitudForm.get('id_propiedad')?.touched" class="text-danger">
+      Nombre Propiedad requerido
+    </div>
+  </div>
 
-      <button type="submit" [disabled]="!solicitudForm.valid" class="form-submit-button">Guardar Solicitud</button>
-    </form>
+  <button type="submit" [disabled]="!solicitudForm.valid" class="form-submit-button">Guardar Solicitud</button>
+</form>
