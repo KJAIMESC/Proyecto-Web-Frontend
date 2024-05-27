@@ -36,7 +36,7 @@ export class GetAllArrendatarioComponent implements OnInit {
   }
 
   listDelete(id: number){
-    this.arrendatarioService.deleteArrendatario(id)
+    this.arrendatarioService.deleteArrendatario("hola", "hola")
       .then(() => {
         console.log("Arrendatario eliminado con éxito");
         this.arrendatarios = this.arrendatarios.filter(arrendatario => arrendatario.id_arrendatario !== id);

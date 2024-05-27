@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SolicitudService } from '../../../services/solicitud.service';
 import { Solicitud } from '../../../models/solicitud';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-delete-solicitud',
@@ -16,8 +17,32 @@ export class DeleteSolicitudComponent {
     id: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
   });
   message: string = '';
+  solicitudes: Solicitud[] = [];
 
-  constructor(private solicitudService: SolicitudService) { }
+  constructor(private solicitudService: SolicitudService, private cookieService: CookieService) { }
+
+  ngOnInit() {
+    this.getSolicitudes();
+  }
+
+  getSolicitudes() {
+    const token = this.cookieService.get('token');
+    const tokenType = this.cookieService.get('tokenType');
+    console.log('Obteniendo solicitudes con token:', token, 'y tipo:', tokenType);
+    this.solicitudService.getAllSolicitudes(token, tokenType).then(
+      (data: Solicitud[]) => {
+        if (data.length > 0) {
+          this.solicitudes = data;
+          console.log('Solicitudes cargadas:', this.solicitudes);
+        } else {
+          console.warn('No se encontraron solicitudes.');
+        }
+      },
+      (error) => {
+        console.error('Error obteniendo solicitudes:', error);
+      }
+    );
+  }
 
   onDelete() {
     if (this.deleteForm.valid) {

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PropiedadService } from '../../../services/propiedad.service';
 import { Propiedad } from '../../../models/propiedad';
+import { TipoIngresoService } from '../../../services/tipo-ingreso.service';
+import { TipoIngreso } from '../../../models/tipo-ingreso.model';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
@@ -29,12 +31,31 @@ export class SavePropiedadComponent {
     activado: new FormControl(false),
     tipoIngresoId: new FormControl('', [Validators.required])
   });
+  
+  tiposIngreso: TipoIngreso[] = [];
 
   constructor(
     private propiedadService: PropiedadService,
+    private tipoIngresoService: TipoIngresoService,
     private router: Router,
     private cookieService: CookieService
   ) {}
+
+  ngOnInit() {
+    this.getTiposIngreso();
+  }
+
+  getTiposIngreso() {
+    this.tipoIngresoService.getAllTiposIngreso().then(
+      data => {
+        this.tiposIngreso = data;
+        console.log('Tipos de ingreso cargados:', this.tiposIngreso);
+      },
+      error => {
+        console.error('Error al cargar los tipos de ingreso:', error);
+      }
+    );
+  }
 
   savePropiedad() {
     if (this.propiedadForm.valid) {

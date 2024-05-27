@@ -3,11 +3,12 @@
     <h2>Eliminar Solicitud</h2>
     <div class="center">
       <label for="id" class="delete-container">ID de la Solicitud:</label>
-      <input type="text" formControlName="id" id="id" class="delete-input" placeholder="Ingrese ID de la solicitud a eliminar">
+      <select formControlName="id" id="id" class="delete-input">
+        <option *ngFor="let solicitud of solicitudes" [value]="solicitud.id_solicitud">{{ solicitud.id_solicitud }}</option>
+      </select>
       <button type="submit" [disabled]="!deleteForm.valid" class="delete-button">Eliminar Solicitud</button>
     </div>
   </form>
 </div>
 
 <p *ngIf="message" class="error-message">{{ message }}</p>
-  

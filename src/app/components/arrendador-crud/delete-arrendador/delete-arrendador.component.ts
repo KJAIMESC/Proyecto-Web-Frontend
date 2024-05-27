@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ArrendadorService } from '../../../services/arrendador.service';
+import { CookieService } from 'ngx-cookie-service'
+import { Router } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-delete-arrendador',
@@ -14,12 +17,19 @@ export class DeleteArrendadorComponent {
   searchId: string = '';
   message: string = '';
 
-  constructor(private arrendadorService: ArrendadorService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private arrendadorService: ArrendadorService,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
   deleteArrendador() {
-    const id = Number(this.searchId);
+    const token = this.cookieService.get('token');
+    const tokenType = this.cookieService.get('tokenType');
+    const id =this.cookieService.get('id');
     if (id) {
-      this.arrendadorService.deleteArrendador(id).then(() => {
+      this.arrendadorService.deleteArrendador(token, tokenType).then(() => {
         this.message = `Arrendador con ID ${id} eliminado exitosamente.`;
       }).catch((error) => {
         console.error(error);

@@ -4,6 +4,8 @@ import { Arrendador } from '../../../models/arrendador';
 import { ArrendadorService } from '../../../services/arrendador.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-update-arrendador',
@@ -21,7 +23,9 @@ export class UpdateArrendadorComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private arrendadorService: ArrendadorService
+    private arrendadorService: ArrendadorService,
+    private router: Router,
+    private cookieService: CookieService
   ) {
     this.arrendadorForm = new FormGroup({
       id_arrendador: new FormControl('', [Validators.required]),
@@ -35,7 +39,7 @@ export class UpdateArrendadorComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const id = params['id'];
+      const id = this.cookieService.get('id');
       if (id) {
         this.searchId = +id;
         this.loadArrendador(this.searchId);
@@ -46,6 +50,7 @@ export class UpdateArrendadorComponent implements OnInit {
   loadArrendador(id: number) {
     this.arrendadorService.getArrendadorById(id).then(arrendador => {
       this.currentArrendador = arrendador;
+      this.currentArrendador.contrasena = ""; 
       this.arrendadorForm.patchValue(arrendador);
       this.isUpdatedSuccessfully = false;
       this.message = '';
@@ -57,19 +62,32 @@ export class UpdateArrendadorComponent implements OnInit {
 
   updateArrendador() {
     if (this.arrendadorForm.valid) {
-      this.arrendadorService.saveArrendador(this.arrendadorForm.value as Arrendador)
-        .then(response => {
-          console.log('Arrendador actualizado:', response);
-          this.isUpdatedSuccessfully = true;
-          this.message = 'Arrendador actualizado con éxito.';
-        })
-        .catch(error => {
-          console.error('Error al actualizar arrendador:', error);
-          this.message = error.response.data.message;
-          this.isUpdatedSuccessfully = false;
-        });
+      const token = this.cookieService.get('token');
+      const tokenType = this.cookieService.get('tokenType');
+
+      if (token && tokenType && this.currentArrendador) {
+        const updatedArrendador: Arrendador = {
+          ...this.currentArrendador,
+          ...this.arrendadorForm.value
+        };
+
+        this.arrendadorService.updateArrendador(updatedArrendador, token, tokenType)
+          .then(response => {
+            console.log('Arrendador actualizado:', response);
+            this.isUpdatedSuccessfully = true;
+            this.message = 'Arrendador actualizado con éxito.';
+            this.router.navigate(['/perfil']); // Redirige al perfil o a la página deseada
+          })
+          .catch(error => {
+            console.error('Error al actualizar arrendador:', error);
+            this.message = 'Error al actualizar los datos del arrendador';
+            this.isUpdatedSuccessfully = false;
+          });
+      } else {
+        this.message = 'No se encontraron las cookies de autenticación';
+      }
     } else {
-      this.message = 'Please check the form fields.';
+      this.message = 'Por favor, revise los campos del formulario.';
     }
   }
-}
+} 
