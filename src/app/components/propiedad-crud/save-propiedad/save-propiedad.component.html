@@ -71,8 +71,10 @@
     </div>
 
     <div class="form-group">
-      <label for="tipoIngresoId">Tipo Ingreso ID</label>
-      <input type="number" class="form-control" id="tipoIngresoId" formControlName="tipoIngresoId" required>
+      <label for="tipoIngresoId">Tipo de Ingreso</label>
+      <select class="form-control" id="tipoIngresoId" formControlName="tipoIngresoId" required>
+        <option *ngFor="let tipo of tiposIngreso" [value]="tipo.id_tipoIngreso">{{ tipo.tipo }}</option>
+      </select>
       <div *ngIf="propiedadForm.get('tipoIngresoId')?.invalid && propiedadForm.get('tipoIngresoId')?.touched" class="text-danger">
         Tipo de ingreso requerido
       </div>
