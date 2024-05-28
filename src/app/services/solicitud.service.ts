@@ -72,7 +72,7 @@ export class SolicitudService {
       }
   
       return this.getSolicitudById(id).then(solicitud => {
-        solicitud.calificacion = calificacion; // Asegúrate de tener un campo calificacion en el modelo Solicitud
+        solicitud.calificacion = calificacion; 
   
         // Actualizar la solicitud con la nueva calificación
         return this.updateCalificacion(solicitud);
@@ -82,16 +82,27 @@ export class SolicitudService {
       });
     }
   
-  // Función para actualizar la calificación de una solicitud
-  async updateCalificacion(solicitud: Solicitud): Promise<Solicitud> {
-    const updateUrl = `${this.apiUrl}/updateCalificacion/${solicitud.id_solicitud}`;
-    try {
-        const response = await axios.put<Solicitud>(updateUrl, solicitud);
-        console.log("Solicitud actualizada con calificación:", response.data);
-        return response.data;
-    } catch (error) {
-        console.error("Error al actualizar la calificación de la solicitud", error);
-        throw error;
-    }
+    async updateCalificacion(solicitud: Solicitud): Promise<Solicitud> {
+      const updateUrl = `${this.apiUrl}/updateCalificacion/${solicitud.id_solicitud}`;
+      if (solicitud.calificacion == null) { 
+          throw new Error("La calificación no puede ser nula o indefinida.");
+      }
+  
+      try {
+          const calificacionAsString = solicitud.calificacion.toString();
+          const response = await axios.put<Solicitud>(updateUrl, calificacionAsString, {
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          });
+          console.log("Solicitud actualizada con calificación:", response.data);
+          return response.data;
+      } catch (error) {
+          console.error("Error al actualizar la calificación de la solicitud", error);
+          throw error;
+      }
+  }
+  
+  
 }
-}
+
