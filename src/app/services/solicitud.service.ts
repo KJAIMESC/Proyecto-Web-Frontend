@@ -65,26 +65,33 @@ export class SolicitudService {
       });
   }
 
-  calificarSolicitud(id: number | null | undefined, calificacion: number | null | undefined): Promise<any> {
-    if (id == null || calificacion == null) {
-      throw new Error('ID y calificación son obligatorios');
-    }
-    
-    const url = `${this.apiUrl}/updateCalificacion/${id}`;
-    console.log('ID de solicitud:', id);
-    console.log('Calificación:', calificacion);
-
-    return axios.put(url, calificacion.toString(), {
-      headers: {
-        'Content-Type': 'application/json'
+    // Función para calificar una solicitud
+    calificarSolicitud(id: number, calificacion: number): Promise<Solicitud> {
+      if (calificacion < 0 || calificacion > 10) {
+        return Promise.reject(new Error("La calificación debe estar entre 0 y 10."));
       }
-    })
-    .then(response => response.data)
-    .catch(error => {
-      console.error('Error al calificar la solicitud', error);
-      throw error;
-    });
-  }
-
   
+      return this.getSolicitudById(id).then(solicitud => {
+        solicitud.calificacion = calificacion; // Asegúrate de tener un campo calificacion en el modelo Solicitud
+  
+        // Actualizar la solicitud con la nueva calificación
+        return this.updateCalificacion(solicitud);
+      }).catch(error => {
+        console.error("Error al calificar la solicitud", error);
+        throw error;
+      });
+    }
+  
+  // Función para actualizar la calificación de una solicitud
+  async updateCalificacion(solicitud: Solicitud): Promise<Solicitud> {
+    const updateUrl = `${this.apiUrl}/updateCalificacion/${solicitud.id_solicitud}`;
+    try {
+        const response = await axios.put<Solicitud>(updateUrl, solicitud);
+        console.log("Solicitud actualizada con calificación:", response.data);
+        return response.data;
+    } catch (error) {
+        console.error("Error al actualizar la calificación de la solicitud", error);
+        throw error;
+    }
+}
 }
